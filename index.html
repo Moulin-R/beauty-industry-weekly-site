@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>週次美容業界動向レポート ｜ アーカイブ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose: #c98a9c;
+    --rose-deep: #a8617a;
+    --gold: #c9a86a;
+    --cream: #faf6f1;
+    --ink: #2e2622;
+    --ink-soft: #6b5d55;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    min-height:100vh;
+    background: radial-gradient(circle at 20% 10%, #f7e9ec 0%, #f3ece3 45%, #ece2d6 100%);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 48px 20px 64px;
+  }
+  .header{
+    text-align:center;
+    max-width:720px;
+    margin-bottom: 40px;
+  }
+  .header .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing: 0.35em;
+    font-size: 13px;
+    color: var(--rose-deep);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header h1{
+    font-family:'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 42px);
+    letter-spacing: 0.04em;
+    line-height:1.4;
+  }
+  .header .sub{
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  .archive-list{
+    width:100%;
+    max-width: 720px;
+    display:flex;
+    flex-direction:column;
+    gap: 18px;
+  }
+
+  .archive-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 20px;
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 18px;
+    padding: 24px 28px;
+    text-decoration:none;
+    color: var(--ink);
+    box-shadow: 0 14px 34px -18px rgba(120,70,90,0.3);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .archive-card:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -16px rgba(120,70,90,0.4);
+  }
+  .archive-card.latest{
+    border: 1px solid var(--gold);
+    background: linear-gradient(135deg, rgba(255,255,255,0.75), rgba(255,244,238,0.75));
+  }
+  .archive-card .info{ flex-grow:1; }
+  .archive-card .badge{
+    display:inline-block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: linear-gradient(135deg, var(--rose-deep), var(--gold));
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .archive-card h2{
+    font-family:'Noto Serif JP', serif;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .archive-card .period{
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .archive-card .arrow{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--rose-deep);
+    flex-shrink:0;
+  }
+
+  .footer-note{
+    margin-top: 48px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align:center;
+    opacity: .7;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="eyebrow">Weekly Beauty Industry Report</div>
+    <h1>週次美容業界動向レポート</h1>
+    <div class="sub">美容室・サロン経営者のための業界動向アーカイブ</div>
+  </div>
+
+  <div class="archive-list" id="archiveList">
+
+    <a class="archive-card latest" href="reports/beauty-weekly-2026-09-01.html">
+      <div class="info">
+        <span class="badge">最新号</span>
+        <h2>エステ倒産最多ペース・値上げ4割・香水体験サービスまで</h2>
+        <div class="period">2026年8月19日 〜 8月25日 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a class="archive-card" href="reports/beauty-weekly-2026-08-25.html">
+      <div class="info">
+        <h2>市場縮小・法改正・TikTok集客まで、今週の7トピック</h2>
+        <div class="period">2026年8月18日 〜 8月25日 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+  </div>
+
+  <div class="footer-note">
+    毎週更新予定 ｜ 本サイトは公開情報をもとにした要約レポートです
+  </div>
+
+</body>
+</html>
