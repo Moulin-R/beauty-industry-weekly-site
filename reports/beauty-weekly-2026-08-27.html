@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美容業界動向レポート｜2026年8月27日号</title></title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose: #c98a9c;
+    --rose-deep: #a8617a;
+    --gold: #c9a86a;
+    --cream: #faf6f1;
+    --cream-deep: #f1e9e0;
+    --ink: #2e2622;
+    --ink-soft: #6b5d55;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    background: radial-gradient(circle at 20% 10%, #f7e9ec 0%, #f3ece3 45%, #ece2d6 100%);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 32px 16px 48px;
+  }
+
+  .header{
+    text-align:center;
+    max-width:720px;
+    margin-bottom: 28px;
+    opacity:0;
+    animation: fadeDown .8s ease forwards;
+  }
+  .header .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing: 0.35em;
+    font-size: 13px;
+    color: var(--rose-deep);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header h1{
+    font-family:'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: clamp(26px, 5vw, 40px);
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    line-height:1.4;
+  }
+  .header .sub{
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  /* ticker */
+  .ticker-wrap{
+    width:100%;
+    max-width: 880px;
+    height: 56px;
+    overflow:hidden;
+    border-top: 1px solid rgba(169,97,122,0.25);
+    border-bottom: 1px solid rgba(169,97,122,0.25);
+    margin-bottom: 30px;
+    background: #f7eef0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .ticker-track{
+    display:flex;
+    align-items:center;
+    height: 56px;
+    width: max-content;
+    white-space:nowrap;
+    animation: scrollTicker 50s linear infinite;
+    will-change: transform;
+  }
+  .ticker-track span{
+    flex: 0 0 auto;
+    display:block;
+    padding: 0 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--rose-deep);
+    white-space:nowrap;
+  }
+  @keyframes scrollTicker{
+    0%{ transform: translateX(0); }
+    100%{ transform: translateX(-50%); }
+  }
+
+  .slider-stage{
+    position:relative;
+    width:100%;
+    max-width: 620px;
+    perspective: 1400px;
+  }
+
+  .progress-track{
+    width:100%;
+    max-width: 620px;
+    height: 3px;
+    background: rgba(169,97,122,0.15);
+    border-radius: 4px;
+    margin-bottom: 22px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background: linear-gradient(90deg, var(--gold), var(--rose-deep));
+    width: 14.28%;
+    transition: width .45s cubic-bezier(.65,0,.35,1);
+  }
+
+  .cards{
+    position:relative;
+    width:100%;
+    height: 480px;
+  }
+
+  .card{
+    position:absolute;
+    inset:0;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 22px;
+    box-shadow: 0 20px 50px -18px rgba(120,70,90,0.35), inset 0 1px 0 rgba(255,255,255,0.7);
+    padding: 34px 32px 28px;
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    transform: translateX(40px) scale(.97);
+    pointer-events:none;
+    transition: opacity .5s cubic-bezier(.65,0,.35,1), transform .5s cubic-bezier(.65,0,.35,1);
+  }
+  .card.active{
+    opacity:1;
+    transform: translateX(0) scale(1);
+    pointer-events:auto;
+  }
+  .card.prev{
+    opacity:0;
+    transform: translateX(-40px) scale(.97);
+  }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom: 18px;
+  }
+  .tag{
+    display:inline-block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: linear-gradient(135deg, var(--rose-deep), var(--gold));
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+  .heat{
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .card h2{
+    font-family:'Noto Serif JP', serif;
+    font-size: clamp(19px, 3.4vw, 24px);
+    line-height:1.55;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .card p.summary{
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    flex-grow:1;
+  }
+  .card .meta{
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(169,97,122,0.3);
+    display:flex;
+    justify-content:space-between;
+    font-size: 11.5px;
+    color: var(--rose-deep);
+    letter-spacing: 0.03em;
+  }
+  .card .num{
+    position:absolute;
+    bottom: 18px;
+    right: 26px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 52px;
+    color: rgba(169,97,122,0.1);
+    font-weight:600;
+    pointer-events:none;
+  }
+
+  .controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 22px;
+    margin-top: 26px;
+  }
+  .nav-btn{
+    width: 46px;
+    height:46px;
+    border-radius:50%;
+    border: 1px solid rgba(169,97,122,0.35);
+    background: rgba(255,255,255,0.6);
+    color: var(--rose-deep);
+    font-size: 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition: all .25s ease;
+  }
+  .nav-btn:hover{
+    background: var(--rose-deep);
+    color: #fff;
+    transform: scale(1.06);
+  }
+
+  .dots{
+    display:flex;
+    gap: 9px;
+  }
+  .dot{
+    width: 8px;
+    height:8px;
+    border-radius:50%;
+    background: rgba(169,97,122,0.25);
+    cursor:pointer;
+    transition: all .3s ease;
+  }
+  .dot.active{
+    background: var(--rose-deep);
+    width: 22px;
+    border-radius: 5px;
+  }
+
+  .counter{
+    margin-top: 14px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+  }
+
+  .footer-note{
+    margin-top: 34px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align:center;
+    max-width: 560px;
+    line-height: 1.8;
+    opacity: .75;
+  }
+
+  @keyframes fadeDown{
+    from{ opacity:0; transform: translateY(-14px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  .top-nav{
+    width: 100%;
+    max-width: 880px;
+    margin-bottom: 18px;
+    display:flex;
+    justify-content:flex-start;
+  }
+  .home-btn{
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(169,97,122,0.3);
+    box-shadow: 0 8px 22px -10px rgba(120,70,90,0.35);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 6px;
+    color: var(--rose-deep);
+    text-decoration:none;
+    font-size: 13.5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    transition: all .25s ease;
+  }
+  .home-btn:hover{
+    background: var(--rose-deep);
+    color:#fff;
+    transform: scale(1.03);
+  }
+  @media (max-width: 480px){
+    .home-btn{ height: 36px; padding: 0 14px; font-size: 12.5px; }
+  }
+
+  @media (max-width: 480px){
+    .cards{ height: 520px; }
+    .card{ padding: 26px 22px 22px; }
+    .ticker-wrap{ height: 50px; }
+    .ticker-track{ height: 50px; }
+    .ticker-track span{ padding: 0 20px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="top-nav">
+    <a class="home-btn" href="../index.html" title="目次へ" aria-label="目次へ">← 目次へ</a>
+  </div>
+
+  <div class="header">
+    <div class="eyebrow">Weekly Beauty Industry Report</div>
+    <h1>美容業界動向レポート</h1>
+    <div class="sub">2026年8月27日号 ｜ 経営者が押さえておきたい7トピックス</div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>01｜休眠美容師57%超、若手の勤務未経験率も3年連続増 ｜</span>
+      <span>02｜メンズネイル市場が3年で3倍に急拡大 ｜</span>
+      <span>03｜IT導入補助金が「デジタル化・AI導入補助金」へ改称 ｜</span>
+      <span>04｜訪日客の50%超「日本の美容室を利用したい」 ｜</span>
+      <span>05｜後継者不在で進む美容室の寡占化、ファンド買収も活発に ｜</span>
+      <span>06｜リラクゼーション市場3798億円へ、エステ不振の陰で拡大 ｜</span>
+      <span>07｜美容所27万4070件で過去最多、開業・廃業とも高水準 ｜</span>
+      <span>01｜休眠美容師57%超、若手の勤務未経験率も3年連続増 ｜</span>
+      <span>02｜メンズネイル市場が3年で3倍に急拡大 ｜</span>
+      <span>03｜IT導入補助金が「デジタル化・AI導入補助金」へ改称 ｜</span>
+      <span>04｜訪日客の50%超「日本の美容室を利用したい」 ｜</span>
+      <span>05｜後継者不在で進む美容室の寡占化、ファンド買収も活発に ｜</span>
+      <span>06｜リラクゼーション市場3798億円へ、エステ不振の陰で拡大 ｜</span>
+      <span>07｜美容所27万4070件で過去最多、開業・廃業とも高水準 ｜</span>
+    </div>
+  </div>
+
+  <div class="slider-stage">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="cards" id="cards">
+
+      <div class="card active" data-index="0">
+        <div class="card-top">
+          <span class="tag">人材採用</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>休眠美容師57%超、若手の勤務未経験率も3年連続増</h2>
+        <p class="summary">ホットペッパービューティーアカデミーの調査で、美容師免許を持ちながら現在は美容師として働いていない「休眠美容師」の割合が依然5割を超えていることが分かった。就業率は43.6%とわずかに改善しているものの、免許取得後に一度も美容師として働かない割合は3年連続で上昇。初職から3年未満での離職も4割超で、採用以上に「定着」の仕組みづくりが急務となっている。</p>
+        <div class="meta"><span>出典：ビュートピア（ホットペッパービューティーアカデミー）</span><span>2026.08</span></div>
+        <div class="num">01</div>
+      </div>
+
+      <div class="card" data-index="1">
+        <div class="card-top">
+          <span class="tag">メンズ市場</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>メンズネイル市場が3年で3倍に急拡大</h2>
+        <p class="summary">男性向け美容サービスの拡大が加速している。ヘア・エステ・リラク・ネイル・アイを合わせたメンズ美容サロン市場は着実に成長を続けており、なかでもメンズネイルは2023年の15億円から2026年予測45〜50億円へと、わずか3年で市場規模が3倍に。営業職やIT関係者など、これまで美容と縁遠かった層への広がりが数字を押し上げている。</p>
+        <div class="meta"><span>出典：ネイルビジネス／全国ネイリスト協会（JNA）</span><span>2026.05</span></div>
+        <div class="num">02</div>
+      </div>
+
+      <div class="card" data-index="2">
+        <div class="card-top">
+          <span class="tag">DX・補助金</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>IT導入補助金が「デジタル化・AI導入補助金」へ改称</h2>
+        <p class="summary">2026年度、従来の「IT導入補助金」が「デジタル化・AI導入補助金」へと名称・制度が見直され、サロン運営法人も対象になり得ることが分かった。予約・顧客管理・電子カルテ・POSレジといったDXツールの導入を後押しする動きとして注目される。単なる業務効率化にとどまらず、蓄積した顧客データを経営数字の改善へつなげる視点が今後より重要になりそうだ。</p>
+        <div class="meta"><span>出典：株式会社Wheat（美容業界向けDXツール比較）</span><span>2026.08</span></div>
+        <div class="num">03</div>
+      </div>
+
+      <div class="card" data-index="3">
+        <div class="card-top">
+          <span class="tag">インバウンド</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>訪日客の50%超「日本の美容室を利用したい」</h2>
+        <p class="summary">2025年の訪日外国人数は過去最高の4268万人に達し、旅行消費額も9兆円を突破した。ホットペッパービューティーアカデミーの調査では「日本の美容サロンを利用したい」と答えた訪日客が50%を超え、すでに国内サロンの58.2%が外国人客の来店を経験済みという。多言語対応の予約導線やSNS発信の有無が、今後の来店機会を左右しそうだ。</p>
+        <div class="meta"><span>出典：ホットペッパービューティーアカデミー／Digima出島</span><span>2026.04</span></div>
+        <div class="num">04</div>
+      </div>
+
+      <div class="card" data-index="4">
+        <div class="card-top">
+          <span class="tag">M&amp;A・事業承継</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>後継者不在で進む美容室の寡占化、ファンド買収も活発に</h2>
+        <p class="summary">個人経営が中心の美容室業界で、経営者の高齢化と後継者不在を背景にM&amp;Aによる事業承継が広がっている。地域密着型サロンを中堅チェーンや投資ファンドが買収し、グループ化・複合業態化する動きが活発化。倒産・廃業が過去最多を更新する一方で、事業を存続させる選択肢としてM&amp;Aへの関心が高まっている状況がうかがえる。</p>
+        <div class="meta"><span>出典：日本M&amp;Aセンター／CINC Capital</span><span>2026.06〜10</span></div>
+        <div class="num">05</div>
+      </div>
+
+      <div class="card" data-index="5">
+        <div class="card-top">
+          <span class="tag">ヘッドスパ市場</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>リラクゼーション市場3798億円へ、エステ不振の陰で拡大</h2>
+        <p class="summary">エステティックサロン市場が5年連続でマイナス成長となる一方、ヘッドスパを含むリラクゼーションサロン市場は3年連続で拡大し、2025年には3798億円に達する見込みであることが分かった。「睡眠」への関心の高まりを背景に、男性客の比率が女性を上回る店舗も現れるなど、美容と健康の境界を越えた需要が広がっている。</p>
+        <div class="meta"><span>出典：ホットペッパービューティーアカデミー「美容センサス2025」</span><span>2026.05</span></div>
+        <div class="num">06</div>
+      </div>
+
+      <div class="card" data-index="6">
+        <div class="card-top">
+          <span class="tag">店舗動向</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>美容所27万4070件で過去最多、開業・廃業とも高水準</h2>
+        <p class="summary">厚生労働省の衛生行政報告例によると、直近の年度末時点の美容所数は27万4070件で過去最多を更新した。年間の新規開設は1万4304件と旺盛な開業意欲を示す一方、廃業も推計1万123件と高水準で推移しており、新規参入と退出が同時に進む「新陳代謝の激しい」業界構造が改めて浮き彫りになった。</p>
+        <div class="meta"><span>出典：理美容ニュース（厚生労働省 衛生行政報告例）</span><span>2024年度データ</span></div>
+        <div class="num">07</div>
+      </div>
+
+    </div>
+
+    <div class="controls">
+      <div class="nav-btn" id="prevBtn">←</div>
+      <div class="dots" id="dots"></div>
+      <div class="nav-btn" id="nextBtn">→</div>
+    </div>
+    <div class="counter" id="counter">01 / 07</div>
+  </div>
+
+  <div class="footer-note">
+    ※本レポートは公開情報をもとにした要約です。詳細は各出典元をご確認ください。<br>
+    「美容業界ニュース」でいつでも最新版を更新できます。
+  </div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const dotsWrap = document.getElementById('dots');
+  const total = cards.length;
+  let current = 0;
+
+  for(let i=0;i<total;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=> goTo(i));
+    dotsWrap.appendChild(d);
+  }
+  const dots = document.querySelectorAll('.dot');
+  const progressFill = document.getElementById('progressFill');
+  const counter = document.getElementById('counter');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function render(){
+    cards.forEach((c, i)=>{
+      c.classList.remove('active','prev');
+      if(i === current) c.classList.add('active');
+      else if(i < current) c.classList.add('prev');
+    });
+    dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    progressFill.style.width = ((current+1)/total*100) + '%';
+    counter.textContent = pad(current+1) + ' / ' + pad(total);
+  }
+
+  function goTo(i){
+    current = (i+total) % total;
+    render();
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=> goTo(current+1));
+  document.getElementById('prevBtn').addEventListener('click', ()=> goTo(current-1));
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight') goTo(current+1);
+    if(e.key === 'ArrowLeft') goTo(current-1);
+  });
+
+  // touch swipe
+  let touchStartX = 0;
+  const stage = document.querySelector('.slider-stage');
+  stage.addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  stage.addEventListener('touchend', (e)=>{
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if(dx > 50) goTo(current-1);
+    if(dx < -50) goTo(current+1);
+  }, {passive:true});
+
+  render();
+</script>
+
+</body>
+</html>
