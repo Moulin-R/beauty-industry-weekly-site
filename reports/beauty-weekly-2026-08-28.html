@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美容業界動向レポート｜2026年8月28日号</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose: #c98a9c;
+    --rose-deep: #a8617a;
+    --gold: #c9a86a;
+    --cream: #faf6f1;
+    --cream-deep: #f1e9e0;
+    --ink: #2e2622;
+    --ink-soft: #6b5d55;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    background: radial-gradient(circle at 20% 10%, #f7e9ec 0%, #f3ece3 45%, #ece2d6 100%);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 32px 16px 48px;
+  }
+
+  .header{
+    text-align:center;
+    max-width:720px;
+    margin-bottom: 28px;
+    opacity:0;
+    animation: fadeDown .8s ease forwards;
+  }
+  .header .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing: 0.35em;
+    font-size: 13px;
+    color: var(--rose-deep);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header h1{
+    font-family:'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: clamp(26px, 5vw, 40px);
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    line-height:1.4;
+  }
+  .header .sub{
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  /* ticker */
+  .ticker-wrap{
+    width:100%;
+    max-width: 880px;
+    height: 56px;
+    overflow:hidden;
+    border-top: 1px solid rgba(169,97,122,0.25);
+    border-bottom: 1px solid rgba(169,97,122,0.25);
+    margin-bottom: 30px;
+    background: #f7eef0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .ticker-track{
+    display:flex;
+    align-items:center;
+    height: 56px;
+    width: max-content;
+    white-space:nowrap;
+    animation: scrollTicker 50s linear infinite;
+    will-change: transform;
+  }
+  .ticker-track span{
+    flex: 0 0 auto;
+    display:block;
+    padding: 0 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--rose-deep);
+    white-space:nowrap;
+  }
+  @keyframes scrollTicker{
+    0%{ transform: translateX(0); }
+    100%{ transform: translateX(-50%); }
+  }
+
+  .slider-stage{
+    position:relative;
+    width:100%;
+    max-width: 620px;
+    perspective: 1400px;
+  }
+
+  .progress-track{
+    width:100%;
+    max-width: 620px;
+    height: 3px;
+    background: rgba(169,97,122,0.15);
+    border-radius: 4px;
+    margin-bottom: 22px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background: linear-gradient(90deg, var(--gold), var(--rose-deep));
+    width: 14.28%;
+    transition: width .45s cubic-bezier(.65,0,.35,1);
+  }
+
+  .cards{
+    position:relative;
+    width:100%;
+    height: 480px;
+  }
+
+  .card{
+    position:absolute;
+    inset:0;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 22px;
+    box-shadow: 0 20px 50px -18px rgba(120,70,90,0.35), inset 0 1px 0 rgba(255,255,255,0.7);
+    padding: 34px 32px 28px;
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    transform: translateX(40px) scale(.97);
+    pointer-events:none;
+    transition: opacity .5s cubic-bezier(.65,0,.35,1), transform .5s cubic-bezier(.65,0,.35,1);
+  }
+  .card.active{
+    opacity:1;
+    transform: translateX(0) scale(1);
+    pointer-events:auto;
+  }
+  .card.prev{
+    opacity:0;
+    transform: translateX(-40px) scale(.97);
+  }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom: 18px;
+  }
+  .tag{
+    display:inline-block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: linear-gradient(135deg, var(--rose-deep), var(--gold));
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+  .heat{
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .card h2{
+    font-family:'Noto Serif JP', serif;
+    font-size: clamp(19px, 3.4vw, 24px);
+    line-height:1.55;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .card p.summary{
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    flex-grow:1;
+  }
+  .card .meta{
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(169,97,122,0.3);
+    display:flex;
+    justify-content:space-between;
+    font-size: 11.5px;
+    color: var(--rose-deep);
+    letter-spacing: 0.03em;
+  }
+  .card .num{
+    position:absolute;
+    bottom: 18px;
+    right: 26px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 52px;
+    color: rgba(169,97,122,0.1);
+    font-weight:600;
+    pointer-events:none;
+  }
+
+  .controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 22px;
+    margin-top: 26px;
+  }
+  .nav-btn{
+    width: 46px;
+    height:46px;
+    border-radius:50%;
+    border: 1px solid rgba(169,97,122,0.35);
+    background: rgba(255,255,255,0.6);
+    color: var(--rose-deep);
+    font-size: 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition: all .25s ease;
+  }
+  .nav-btn:hover{
+    background: var(--rose-deep);
+    color: #fff;
+    transform: scale(1.06);
+  }
+
+  .dots{
+    display:flex;
+    gap: 9px;
+  }
+  .dot{
+    width: 8px;
+    height:8px;
+    border-radius:50%;
+    background: rgba(169,97,122,0.25);
+    cursor:pointer;
+    transition: all .3s ease;
+  }
+  .dot.active{
+    background: var(--rose-deep);
+    width: 22px;
+    border-radius: 5px;
+  }
+
+  .counter{
+    margin-top: 14px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+  }
+
+  .footer-note{
+    margin-top: 34px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align:center;
+    max-width: 560px;
+    line-height: 1.8;
+    opacity: .75;
+  }
+
+  @keyframes fadeDown{
+    from{ opacity:0; transform: translateY(-14px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  .top-nav{
+    width: 100%;
+    max-width: 880px;
+    margin-bottom: 18px;
+    display:flex;
+    justify-content:flex-start;
+  }
+  .home-btn{
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(169,97,122,0.3);
+    box-shadow: 0 8px 22px -10px rgba(120,70,90,0.35);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 6px;
+    color: var(--rose-deep);
+    text-decoration:none;
+    font-size: 13.5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    transition: all .25s ease;
+  }
+  .home-btn:hover{
+    background: var(--rose-deep);
+    color:#fff;
+    transform: scale(1.03);
+  }
+  @media (max-width: 480px){
+    .home-btn{ height: 36px; padding: 0 14px; font-size: 12.5px; }
+  }
+
+  @media (max-width: 480px){
+    .cards{ height: 520px; }
+    .card{ padding: 26px 22px 22px; }
+    .ticker-wrap{ height: 50px; }
+    .ticker-track{ height: 50px; }
+    .ticker-track span{ padding: 0 20px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="top-nav">
+    <a class="home-btn" href="../index.html" title="目次へ" aria-label="目次へ">← 目次へ</a>
+  </div>
+
+  <div class="header">
+    <div class="eyebrow">Weekly Beauty Industry Report</div>
+    <h1>美容業界動向レポート</h1>
+    <div class="sub">2026年8月28日号 ｜ 経営者が押さえておきたい7トピックス</div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>01｜再エネ賦課金上昇、電気代は「契約見直し」がカギに ｜</span>
+      <span>02｜韓国発「カチモリ」ヘアがフリーワード検索で急上昇 ｜</span>
+      <span>03｜見本市「ビューティーワールド」に名称変更、大阪10月開催 ｜</span>
+      <span>04｜美容室のサブスク（定額制）導入が拡大 ｜</span>
+      <span>05｜アイビューティー市場1179億円、前年比28.9%増 ｜</span>
+      <span>06｜出張理美容の対象範囲が拡大、厚労省が新通知 ｜</span>
+      <span>07｜最低賃金「1500円」時代へ、値上げは「必須」の局面に ｜</span>
+      <span>01｜再エネ賦課金上昇、電気代は「契約見直し」がカギに ｜</span>
+      <span>02｜韓国発「カチモリ」ヘアがフリーワード検索で急上昇 ｜</span>
+      <span>03｜見本市「ビューティーワールド」に名称変更、大阪10月開催 ｜</span>
+      <span>04｜美容室のサブスク（定額制）導入が拡大 ｜</span>
+      <span>05｜アイビューティー市場1179億円、前年比28.9%増 ｜</span>
+      <span>06｜出張理美容の対象範囲が拡大、厚労省が新通知 ｜</span>
+      <span>07｜最低賃金「1500円」時代へ、値上げは「必須」の局面に ｜</span>
+    </div>
+  </div>
+
+  <div class="slider-stage">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="cards" id="cards">
+
+      <div class="card active" data-index="0">
+        <div class="card-top">
+          <span class="tag">電気代対策</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>再エネ賦課金上昇、電気代は「契約見直し」がカギに</h2>
+        <p class="summary">理美容室はシャンプーや空調、ドライヤーの稼働が土日午後に集中しやすく、電気代高騰の影響を受けやすい業種であることが指摘されている。再エネ賦課金は2026年度に1kWhあたり4.5円前後まで上昇する見通しで、中規模サロンでは年間の負担額が請求総額の1割超に達するケースも。LED照明への切り替えや電力プランの一括見直しなど、固定費対策への関心が高まっている。</p>
+        <div class="meta"><span>出典：エネルギーコンサルタント各社レポート</span><span>2026.05</span></div>
+        <div class="num">01</div>
+      </div>
+
+      <div class="card" data-index="1">
+        <div class="card-top">
+          <span class="tag">スタイルトレンド</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>韓国発「カチモリ」ヘアがフリーワード検索で急上昇</h2>
+        <p class="summary">ホットペッパービューティーアカデミーの調査によると、韓国発のタイトなお団子ヘア「カチモリ」が2026年の注目スタイルとして浮上している。低めの位置でまとめつつ毛先だけをあえて残す無造作感が特徴で、Y2Kファッションとの相性の良さからSNSを中心にトレンド入り。定番の「レイヤーカット」に続く個性派デザインとして検索順位を上げている。</p>
+        <div class="meta"><span>出典：ホットペッパービューティーアカデミー</span><span>2026年トレンド予測</span></div>
+        <div class="num">02</div>
+      </div>
+
+      <div class="card" data-index="2">
+        <div class="card-top">
+          <span class="tag">業界イベント</span>
+          <span class="heat">🔥🔥</span>
+        </div>
+        <h2>見本市「ビューティーワールド」に名称変更、大阪10月開催</h2>
+        <p class="summary">国内最大級のビューティ総合見本市が、2026年の大阪開催（10月19〜21日）から「ビューティーワールド ジャパン」の名称を「ビューティーワールド」へ順次変更する。エステ・ヘア・ネイルに加え、快眠や疲労回復をテーマにした新ゾーン「ねむり＋リカバリー」も新設され、美容と健康を横断した最新トレンドが一堂に会する場となる見込みだ。</p>
+        <div class="meta"><span>出典：メッセフランクフルト ジャパン</span><span>2026.10予定</span></div>
+        <div class="num">03</div>
+      </div>
+
+      <div class="card" data-index="3">
+        <div class="card-top">
+          <span class="tag">経営戦略</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>美容室の「サブスク（定額制）」導入が拡大</h2>
+        <p class="summary">毎月定額でカットやカラーなどのメニューを利用できるサブスクリプション型サービスを取り入れる美容室が、都心部を中心に増えている。予約が読めない月の売上の波を平準化し、安定的なキャッシュフローを確保する狙いがある一方、対象メニューを時短メニューに絞るなど、ブランド価値を保つ設計の工夫も課題として指摘されている。</p>
+        <div class="meta"><span>出典：サロンズソリューション／サブスクライン</span><span>2026.02</span></div>
+        <div class="num">04</div>
+      </div>
+
+      <div class="card" data-index="4">
+        <div class="card-top">
+          <span class="tag">市場動向</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>アイビューティー市場1179億円、前年比28.9%増</h2>
+        <p class="summary">リクルートの調査によると、アイビューティー（まつげ・眉）サロン市場は約1179億円で前年比28.9%増となり、大きく成長した。専門サロンは全国で約3万店舗、アイリストは約5万人と推計される。近年は薬剤の規制改正を背景に、まつげエクステから自まつ毛を活かす「ラッシュリフト」へと需要がシフトしつつある。</p>
+        <div class="meta"><span>出典：ホットペッパービューティーアカデミー</span><span>2024年データ</span></div>
+        <div class="num">05</div>
+      </div>
+
+      <div class="card" data-index="5">
+        <div class="card-top">
+          <span class="tag">法改正</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>出張理美容の対象範囲が拡大、厚労省が新通知</h2>
+        <p class="summary">厚生労働省は、病気・介護などに限られていた出張理美容（訪問美容）の対象範囲を拡大する新たな通知を2026年3月末に発出する予定だ。仕事や育児・介護と両立しながら来店が難しい人なども新たに対象となる。SNS上で首相が言及するなど注目度が高く、休眠美容師の新たな働き方や地方サロンの新規事業としても期待が集まっている。</p>
+        <div class="meta"><span>出典：ビュートピア（厚生労働省通知案）</span><span>2026.03</span></div>
+        <div class="num">06</div>
+      </div>
+
+      <div class="card" data-index="6">
+        <div class="card-top">
+          <span class="tag">価格戦略</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>最低賃金「1500円」時代へ、値上げは「必須」の局面に</h2>
+        <p class="summary">政府が掲げる最低賃金の全国平均1500円という目標に向け、賃上げ圧力は年々強まっている。薬剤・材料費の10〜20%上昇や光熱費の高止まりも重なり、2026年の美容室経営は「値上げをしない」という選択肢がほぼなくなったとの指摘も。値上げ後も8割超の客が利用を継続しているとのデータもあり、適切な告知とタイミングが鍵になりそうだ。</p>
+        <div class="meta"><span>出典：ギャラレジ／プライシー</span><span>2026.04〜05</span></div>
+        <div class="num">07</div>
+      </div>
+
+    </div>
+
+    <div class="controls">
+      <div class="nav-btn" id="prevBtn">←</div>
+      <div class="dots" id="dots"></div>
+      <div class="nav-btn" id="nextBtn">→</div>
+    </div>
+    <div class="counter" id="counter">01 / 07</div>
+  </div>
+
+  <div class="footer-note">
+    ※本レポートは公開情報をもとにした要約です。詳細は各出典元をご確認ください。<br>
+    「美容業界ニュース」でいつでも最新版を更新できます。
+  </div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const dotsWrap = document.getElementById('dots');
+  const total = cards.length;
+  let current = 0;
+
+  for(let i=0;i<total;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=> goTo(i));
+    dotsWrap.appendChild(d);
+  }
+  const dots = document.querySelectorAll('.dot');
+  const progressFill = document.getElementById('progressFill');
+  const counter = document.getElementById('counter');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function render(){
+    cards.forEach((c, i)=>{
+      c.classList.remove('active','prev');
+      if(i === current) c.classList.add('active');
+      else if(i < current) c.classList.add('prev');
+    });
+    dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    progressFill.style.width = ((current+1)/total*100) + '%';
+    counter.textContent = pad(current+1) + ' / ' + pad(total);
+  }
+
+  function goTo(i){
+    current = (i+total) % total;
+    render();
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=> goTo(current+1));
+  document.getElementById('prevBtn').addEventListener('click', ()=> goTo(current-1));
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight') goTo(current+1);
+    if(e.key === 'ArrowLeft') goTo(current-1);
+  });
+
+  // touch swipe
+  let touchStartX = 0;
+  const stage = document.querySelector('.slider-stage');
+  stage.addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  stage.addEventListener('touchend', (e)=>{
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if(dx > 50) goTo(current-1);
+    if(dx < -50) goTo(current+1);
+  }, {passive:true});
+
+  render();
+</script>
+
+</body>
+</html>
