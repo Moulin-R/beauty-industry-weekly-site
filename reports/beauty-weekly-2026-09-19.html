@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>週次美容業界動向レポート 2026.09.19</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose: #c98a9c;
+    --rose-deep: #a8617a;
+    --gold: #c9a86a;
+    --cream: #faf6f1;
+    --cream-deep: #f1e9e0;
+    --ink: #2e2622;
+    --ink-soft: #6b5d55;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    background: radial-gradient(circle at 20% 10%, #f7e9ec 0%, #f3ece3 45%, #ece2d6 100%);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 72px 16px 48px;
+  }
+
+  .back-btn{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(169,97,122,0.35);
+    color: var(--rose-deep);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all .25s ease;
+  }
+  .back-btn:hover{
+    background: var(--rose-deep);
+    color: #fff;
+    transform: translateX(-2px);
+  }
+
+  .header{
+    text-align:center;
+    max-width:720px;
+    margin-bottom: 28px;
+    opacity:0;
+    animation: fadeDown .8s ease forwards;
+  }
+  .header .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing: 0.35em;
+    font-size: 13px;
+    color: var(--rose-deep);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header h1{
+    font-family:'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: clamp(26px, 5vw, 40px);
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    line-height:1.4;
+  }
+  .header .sub{
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  /* ticker */
+  .ticker-wrap{
+    width:100%;
+    max-width: 880px;
+    height: 56px;
+    overflow:hidden;
+    border-top: 1px solid rgba(169,97,122,0.25);
+    border-bottom: 1px solid rgba(169,97,122,0.25);
+    margin-bottom: 30px;
+    background: #f7eef0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .ticker-track{
+    display:flex;
+    align-items:center;
+    height: 56px;
+    width: max-content;
+    white-space:nowrap;
+    animation: scrollTicker 50s linear infinite;
+    will-change: transform;
+  }
+  .ticker-track span{
+    flex: 0 0 auto;
+    display:block;
+    padding: 0 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--rose-deep);
+    white-space:nowrap;
+  }
+  @keyframes scrollTicker{
+    0%{ transform: translateX(0); }
+    100%{ transform: translateX(-50%); }
+  }
+
+  .slider-stage{
+    position:relative;
+    width:100%;
+    max-width: 620px;
+    perspective: 1400px;
+  }
+
+  .progress-track{
+    width:100%;
+    max-width: 620px;
+    height: 3px;
+    background: rgba(169,97,122,0.15);
+    border-radius: 4px;
+    margin-bottom: 22px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background: linear-gradient(90deg, var(--gold), var(--rose-deep));
+    width: 14.28%;
+    transition: width .45s cubic-bezier(.65,0,.35,1);
+  }
+
+  .cards{
+    position:relative;
+    width:100%;
+    height: 480px;
+  }
+
+  .card{
+    position:absolute;
+    inset:0;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 22px;
+    box-shadow: 0 20px 50px -18px rgba(120,70,90,0.35), inset 0 1px 0 rgba(255,255,255,0.7);
+    padding: 34px 32px 28px;
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    transform: translateX(40px) scale(.97);
+    pointer-events:none;
+    transition: opacity .5s cubic-bezier(.65,0,.35,1), transform .5s cubic-bezier(.65,0,.35,1);
+  }
+  .card.active{
+    opacity:1;
+    transform: translateX(0) scale(1);
+    pointer-events:auto;
+  }
+  .card.prev{
+    opacity:0;
+    transform: translateX(-40px) scale(.97);
+  }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom: 18px;
+  }
+  .tag{
+    display:inline-block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: linear-gradient(135deg, var(--rose-deep), var(--gold));
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+  .heat{
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .card h2{
+    font-family:'Noto Serif JP', serif;
+    font-size: clamp(19px, 3.4vw, 24px);
+    line-height:1.55;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .card p.summary{
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    flex-grow:1;
+  }
+  .card .meta{
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(169,97,122,0.3);
+    display:flex;
+    justify-content:space-between;
+    font-size: 11.5px;
+    color: var(--rose-deep);
+    letter-spacing: 0.03em;
+  }
+  .card .num{
+    position:absolute;
+    bottom: 18px;
+    right: 26px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 52px;
+    color: rgba(169,97,122,0.1);
+    font-weight:600;
+    pointer-events:none;
+  }
+
+  .controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 22px;
+    margin-top: 26px;
+  }
+  .nav-btn{
+    width: 46px;
+    height:46px;
+    border-radius:50%;
+    border: 1px solid rgba(169,97,122,0.35);
+    background: rgba(255,255,255,0.6);
+    color: var(--rose-deep);
+    font-size: 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition: all .25s ease;
+  }
+  .nav-btn:hover{
+    background: var(--rose-deep);
+    color: #fff;
+    transform: scale(1.06);
+  }
+
+  .dots{
+    display:flex;
+    gap: 9px;
+  }
+  .dot{
+    width: 8px;
+    height:8px;
+    border-radius:50%;
+    background: rgba(169,97,122,0.25);
+    cursor:pointer;
+    transition: all .3s ease;
+  }
+  .dot.active{
+    background: var(--rose-deep);
+    width: 22px;
+    border-radius: 5px;
+  }
+
+  .counter{
+    margin-top: 14px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+  }
+
+  .footer-note{
+    margin-top: 34px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align:center;
+    max-width: 560px;
+    line-height: 1.8;
+    opacity: .75;
+  }
+
+  @keyframes fadeDown{
+    from{ opacity:0; transform: translateY(-14px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px){
+    .back-btn{ top: 14px; left: 12px; padding: 6px 13px; font-size: 12px; }
+    body{ padding-top: 64px; }
+    .cards{ height: 520px; }
+    .card{ padding: 26px 22px 22px; }
+    .ticker-wrap{ height: 50px; }
+    .ticker-track{ height: 50px; }
+    .ticker-track span{ padding: 0 20px; font-size: 13px; }
+  }
+  @media (max-width: 360px){
+    .cards{ height: 620px; }
+  }
+</style>
+</head>
+<body>
+
+  <a class="back-btn" href="../index.html">← 一覧に戻る</a>
+
+  <div class="header">
+    <div class="eyebrow">Weekly Beauty Industry Report</div>
+    <h1>週次美容業界動向レポート</h1>
+    <div class="sub">2026年9月7日 〜 9月19日 ｜ 全7件</div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>01｜理容・美容の活動指数、7月は上昇も2か月連続で100割れ ｜</span>
+      <span>02｜エステ・理美容の平均時給1,448円、前年比+27.2% ｜</span>
+      <span>03｜美容室向け生成AI「SALOMATE」10月開始、月額33,000円 ｜</span>
+      <span>04｜訪日客向け美容予約「WellBe」、5,500万円を調達 ｜</span>
+      <span>05｜ミルボン、新サロンカラー「PRETOWA」を発売 ｜</span>
+      <span>06｜女性の髪悩み最多は「白髪の増加」、40代から急増 ｜</span>
+      <span>07｜男性美容の新プロジェクト「i-stylist」始動 ｜</span>
+      <span>01｜理容・美容の活動指数、7月は上昇も2か月連続で100割れ ｜</span>
+      <span>02｜エステ・理美容の平均時給1,448円、前年比+27.2% ｜</span>
+      <span>03｜美容室向け生成AI「SALOMATE」10月開始、月額33,000円 ｜</span>
+      <span>04｜訪日客向け美容予約「WellBe」、5,500万円を調達 ｜</span>
+      <span>05｜ミルボン、新サロンカラー「PRETOWA」を発売 ｜</span>
+      <span>06｜女性の髪悩み最多は「白髪の増加」、40代から急増 ｜</span>
+      <span>07｜男性美容の新プロジェクト「i-stylist」始動 ｜</span>
+    </div>
+  </div>
+
+  <div class="slider-stage">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="cards" id="cards">
+
+      <div class="card active" data-index="0">
+        <div class="card-top">
+          <span class="tag">市場動向</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>理容・美容の活動指数、7月は上昇も2か月連続で100割れ</h2>
+        <p class="summary">経済産業省が9月15日に公表した第三次産業活動指数（2020年＝100）で、2026年7月は理容業が前月比5.3ポイント、美容業が5.2ポイント上昇した。ただし6月分が下方修正された影響もあり、両業種とも2か月連続で基準の100を下回り、総合指数を大きく下回る水準が続いている。理美容業の活動は依然として力強さを欠くと伝えられている。</p>
+        <div class="meta"><span>出典：理美容ニュース（経済産業省公表）</span><span>2026.09.15</span></div>
+        <div class="num">01</div>
+      </div>
+
+      <div class="card" data-index="1">
+        <div class="card-top">
+          <span class="tag">経営課題</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>エステ・理美容の平均時給1,448円、前年同月比27.2％の急上昇</h2>
+        <p class="summary">マイナビキャリアリサーチラボの2026年8月度レポートによると、エステ・理美容のアルバイト・パート平均時給は1,448円で、前年同月より310円、前月より256円上昇した。三大都市圏では1,494円。全国平均が前年同月を下回る中で上昇ぶりが際立ち、夏以降の求人条件の見直しが背景として指摘されている。採用条件や人件費計画の再点検が迫られそうだ。</p>
+        <div class="meta"><span>出典：理美容ニュース（マイナビ調査）</span><span>2026.09.15</span></div>
+        <div class="num">02</div>
+      </div>
+
+      <div class="card" data-index="2">
+        <div class="card-top">
+          <span class="tag">AI活用</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>美容室向け生成AIサービス「SALOMATE」、10月に提供開始</h2>
+        <p class="summary">ゴッホ・スタイリングスが9月14日に発表した。サロンが自店の想いや強み、得意なスタイルを入力すると、AIが紹介ページ（LP）を作成し、それをもとにSNS投稿用コンテンツの生成・投稿、結果の分析と改善まで継続的に支援する。料金は月額33,000円（税込）の予定。価格やクーポンだけでは伝わらない「選ばれる理由」の発信負担を軽くする狙いだ。</p>
+        <div class="meta"><span>出典：理美容ニュース</span><span>2026.09.14</span></div>
+        <div class="num">03</div>
+      </div>
+
+      <div class="card" data-index="3">
+        <div class="card-top">
+          <span class="tag">インバウンド</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>訪日客向け美容予約「WellBe」、シードで5,500万円を調達</h2>
+        <p class="summary">訪日外国人向けの美容・ウェルネス予約プラットフォームを運営するWellBeが、9月14日に増資と融資あわせて総額5,500万円の資金調達を発表した。現在は東京・大阪・京都・福岡を中心に数百店舗規模の加盟網を持ち、将来は1万店舗規模を目指す。旅行会社やホテル、Googleなどとの連携に加え、歯科や美容医療といった健康分野への展開も掲げている。</p>
+        <div class="meta"><span>出典：理美容ニュース</span><span>2026.09.15</span></div>
+        <div class="num">04</div>
+      </div>
+
+      <div class="card" data-index="4">
+        <div class="card-top">
+          <span class="tag">新製品</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>ミルボンが新サロンカラーブランド「PRETOWA」を発売</h2>
+        <p class="summary">ミルボンは9月10日、独自の「美髪彩生」テクノロジーを搭載した新サロンカラーブランドを全国の美容室向けに発売した。ダメージへの不安、仕上がり劣化への不満、不快な臭いという“3つの不”の解消をうたい、染めるたびに色ツヤを与える点が特徴。サロンカラー市場は拡大する一方で、利用離れも課題とされており、メーカー各社の動向にも注目したい。</p>
+        <div class="meta"><span>出典：理美容ニュース（ミルボン発表）</span><span>2026.09.15</span></div>
+        <div class="num">05</div>
+      </div>
+
+      <div class="card" data-index="5">
+        <div class="card-top">
+          <span class="tag">顧客調査</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>髪の悩み、女性の最多は「白髪の増加」 40代から急増</h2>
+        <p class="summary">スヴェンソンが9月8日に発表した調査（20〜69歳の男女1,035名、2026年5月実施）では、「気になる悩みはない」は18.0％にとどまり、女性の8割以上が何らかの悩みを抱えていた。20〜30代はうねり・広がりやパサつきなど質感系が目立つ一方、40〜60代では白髪の増加が中心で、40代では5割超が挙げている。年代別メニュー提案のヒントになりそうだ。</p>
+        <div class="meta"><span>出典：理美容ニュース（スヴェンソン調査）</span><span>2026.09.08</span></div>
+        <div class="num">06</div>
+      </div>
+
+      <div class="card" data-index="6">
+        <div class="card-top">
+          <span class="tag">男性美容</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>男性美容の新プロジェクト「i-stylist」始動、美容室を“外見資本”の拠点に</h2>
+        <p class="summary">美・プラザ協同組合が9月7日に発表した。男性の外見マネジメントに関する専門知識・技術を持つ人材を「i-stylist」、参画店舗を「i-salon」と位置づけ、カットやカラーの提供にとどまらない美容室のあり方を提案する。男性向け化粧品市場が広がる中、男性が自然に美容を楽しめる環境づくりを目指す取り組みだ。</p>
+        <div class="meta"><span>出典：理美容ニュース（美・プラザ協同組合）</span><span>2026.09.13</span></div>
+        <div class="num">07</div>
+      </div>
+
+    </div>
+
+    <div class="controls">
+      <div class="nav-btn" id="prevBtn">←</div>
+      <div class="dots" id="dots"></div>
+      <div class="nav-btn" id="nextBtn">→</div>
+    </div>
+    <div class="counter" id="counter">01 / 07</div>
+  </div>
+
+  <div class="footer-note">
+    ※本レポートは公開情報をもとにした要約です。詳細は各出典元をご確認ください。<br>
+    次回は来週更新予定です。
+  </div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const dotsWrap = document.getElementById('dots');
+  const total = cards.length;
+  let current = 0;
+
+  for(let i=0;i<total;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=> goTo(i));
+    dotsWrap.appendChild(d);
+  }
+  const dots = document.querySelectorAll('.dot');
+  const progressFill = document.getElementById('progressFill');
+  const counter = document.getElementById('counter');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function render(){
+    cards.forEach((c, i)=>{
+      c.classList.remove('active','prev');
+      if(i === current) c.classList.add('active');
+      else if(i < current) c.classList.add('prev');
+    });
+    dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    progressFill.style.width = ((current+1)/total*100) + '%';
+    counter.textContent = pad(current+1) + ' / ' + pad(total);
+  }
+
+  function goTo(i){
+    current = (i+total) % total;
+    render();
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=> goTo(current+1));
+  document.getElementById('prevBtn').addEventListener('click', ()=> goTo(current-1));
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight') goTo(current+1);
+    if(e.key === 'ArrowLeft') goTo(current-1);
+  });
+
+  // touch swipe
+  let touchStartX = 0;
+  const stage = document.querySelector('.slider-stage');
+  stage.addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  stage.addEventListener('touchend', (e)=>{
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if(dx > 50) goTo(current-1);
+    if(dx < -50) goTo(current+1);
+  }, {passive:true});
+
+  render();
+</script>
+
+</body>
+</html>
