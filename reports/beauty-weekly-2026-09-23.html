@@ -28,7 +28,33 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    padding: 32px 16px 48px;
+    padding: 72px 16px 48px;
+  }
+
+
+  /* back button (必須・削除禁止) */
+  .back-btn{
+    position: fixed;
+    z-index: 100;
+    top: calc(16px + env(safe-area-inset-top, 0px));
+    left: calc(16px + env(safe-area-inset-left, 0px));
+    padding: 8px 16px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(169,97,122,0.35);
+    box-shadow: 0 8px 20px -10px rgba(120,70,90,0.4);
+    color: var(--rose-deep);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: all .25s ease;
+  }
+  .back-btn:hover{
+    background: var(--rose-deep);
+    color: #fff;
   }
 
   .header{
@@ -289,6 +315,8 @@
 </style>
 </head>
 <body>
+
+  <a class="back-btn" href="../index.html" aria-label="一覧へ戻る">← 一覧へ</a>
 
   <div class="header">
     <div class="eyebrow">Weekly Beauty Industry Report</div>
