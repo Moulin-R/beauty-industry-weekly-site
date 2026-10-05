@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>週次美容業界動向レポート 2026.10.06</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose: #c98a9c;
+    --rose-deep: #a8617a;
+    --gold: #c9a86a;
+    --cream: #faf6f1;
+    --cream-deep: #f1e9e0;
+    --ink: #2e2622;
+    --ink-soft: #6b5d55;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    background: radial-gradient(circle at 20% 10%, #f7e9ec 0%, #f3ece3 45%, #ece2d6 100%);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 72px 16px 48px;
+  }
+
+
+  /* back button */
+  .back-btn{
+    position:fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 100;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding: 9px 16px 9px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(169,97,122,0.35);
+    background: rgba(255,255,255,0.75);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: var(--rose-deep);
+    font-family:'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration:none;
+    cursor:pointer;
+    box-shadow: 0 6px 18px -8px rgba(120,70,90,0.4);
+    transition: all .25s ease;
+  }
+  .back-btn:hover{ background: var(--rose-deep); color:#fff; }
+
+  .header{
+    text-align:center;
+    max-width:720px;
+    margin-bottom: 28px;
+    opacity:0;
+    animation: fadeDown .8s ease forwards;
+  }
+  .header .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing: 0.35em;
+    font-size: 13px;
+    color: var(--rose-deep);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header h1{
+    font-family:'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: clamp(26px, 5vw, 40px);
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    line-height:1.4;
+  }
+  .header .sub{
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  /* ticker */
+  .ticker-wrap{
+    width:100%;
+    max-width: 880px;
+    height: 56px;
+    overflow:hidden;
+    border-top: 1px solid rgba(169,97,122,0.25);
+    border-bottom: 1px solid rgba(169,97,122,0.25);
+    margin-bottom: 30px;
+    background: #f7eef0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .ticker-track{
+    display:flex;
+    align-items:center;
+    height: 56px;
+    width: max-content;
+    white-space:nowrap;
+    animation: scrollTicker 50s linear infinite;
+    will-change: transform;
+  }
+  .ticker-track span{
+    flex: 0 0 auto;
+    display:block;
+    padding: 0 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--rose-deep);
+    white-space:nowrap;
+  }
+  @keyframes scrollTicker{
+    0%{ transform: translateX(0); }
+    100%{ transform: translateX(-50%); }
+  }
+
+  .slider-stage{
+    position:relative;
+    width:100%;
+    max-width: 620px;
+    perspective: 1400px;
+  }
+
+  .progress-track{
+    width:100%;
+    max-width: 620px;
+    height: 3px;
+    background: rgba(169,97,122,0.15);
+    border-radius: 4px;
+    margin-bottom: 22px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background: linear-gradient(90deg, var(--gold), var(--rose-deep));
+    width: 14.28%;
+    transition: width .45s cubic-bezier(.65,0,.35,1);
+  }
+
+  .cards{
+    position:relative;
+    width:100%;
+    height: 480px;
+  }
+
+  .card{
+    position:absolute;
+    inset:0;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 22px;
+    box-shadow: 0 20px 50px -18px rgba(120,70,90,0.35), inset 0 1px 0 rgba(255,255,255,0.7);
+    padding: 34px 32px 28px;
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    transform: translateX(40px) scale(.97);
+    pointer-events:none;
+    transition: opacity .5s cubic-bezier(.65,0,.35,1), transform .5s cubic-bezier(.65,0,.35,1);
+  }
+  .card.active{
+    opacity:1;
+    transform: translateX(0) scale(1);
+    pointer-events:auto;
+  }
+  .card.prev{
+    opacity:0;
+    transform: translateX(-40px) scale(.97);
+  }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom: 18px;
+  }
+  .tag{
+    display:inline-block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: linear-gradient(135deg, var(--rose-deep), var(--gold));
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+  .heat{
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .card h2{
+    font-family:'Noto Serif JP', serif;
+    font-size: clamp(19px, 3.4vw, 24px);
+    line-height:1.55;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .card p.summary{
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    flex-grow:1;
+  }
+  .card .meta{
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(169,97,122,0.3);
+    display:flex;
+    justify-content:space-between;
+    font-size: 11.5px;
+    color: var(--rose-deep);
+    letter-spacing: 0.03em;
+  }
+  .card .num{
+    position:absolute;
+    bottom: 18px;
+    right: 26px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 52px;
+    color: rgba(169,97,122,0.1);
+    font-weight:600;
+    pointer-events:none;
+  }
+
+  .controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 22px;
+    margin-top: 26px;
+  }
+  .nav-btn{
+    width: 46px;
+    height:46px;
+    border-radius:50%;
+    border: 1px solid rgba(169,97,122,0.35);
+    background: rgba(255,255,255,0.6);
+    color: var(--rose-deep);
+    font-size: 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition: all .25s ease;
+  }
+  .nav-btn:hover{
+    background: var(--rose-deep);
+    color: #fff;
+    transform: scale(1.06);
+  }
+
+  .dots{
+    display:flex;
+    gap: 9px;
+  }
+  .dot{
+    width: 8px;
+    height:8px;
+    border-radius:50%;
+    background: rgba(169,97,122,0.25);
+    cursor:pointer;
+    transition: all .3s ease;
+  }
+  .dot.active{
+    background: var(--rose-deep);
+    width: 22px;
+    border-radius: 5px;
+  }
+
+  .counter{
+    margin-top: 14px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+  }
+
+  .footer-note{
+    margin-top: 34px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align:center;
+    max-width: 560px;
+    line-height: 1.8;
+    opacity: .75;
+  }
+
+  @keyframes fadeDown{
+    from{ opacity:0; transform: translateY(-14px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px){
+    .cards{ height: 520px; }
+    .card{ padding: 26px 22px 22px; }
+    .ticker-wrap{ height: 50px; }
+    .ticker-track{ height: 50px; }
+    .ticker-track span{ padding: 0 20px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+  <a class="back-btn" id="backBtn" href="../index.html" aria-label="戻る">← 戻る</a>
+
+  <div class="header">
+    <div class="eyebrow">Weekly Beauty Industry Report</div>
+    <h1>週次美容業界動向レポート</h1>
+    <div class="sub">2026年10月6日号 ｜ 直近の主要トピック ｜ 全7件</div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>01｜美容室市場1兆3063億円、前年比-5.9% 「美容代の節約」が最多 ｜</span>
+      <span>02｜美容室の倒産、2年連続で過去最多 約半数が開業10年未満 ｜</span>
+      <span>03｜10月1日施行：カスハラ対策がすべての事業主の義務に ｜</span>
+      <span>04｜2026年秋は「カシスブラウン」 ツヤと深みのブラウン系が主役 ｜</span>
+      <span>05｜Beautyworld Japan WEST、10月19〜21日に大阪で開催予定 ｜</span>
+      <span>06｜サロンAI活用は「客単価とリピートを守る経営手段」へ ｜</span>
+      <span>07｜韓国がKビューティ支援法を成立 欧米大手は成長回復の兆し ｜</span>
+      <span>01｜美容室市場1兆3063億円、前年比-5.9% 「美容代の節約」が最多 ｜</span>
+      <span>02｜美容室の倒産、2年連続で過去最多 約半数が開業10年未満 ｜</span>
+      <span>03｜10月1日施行：カスハラ対策がすべての事業主の義務に ｜</span>
+      <span>04｜2026年秋は「カシスブラウン」 ツヤと深みのブラウン系が主役 ｜</span>
+      <span>05｜Beautyworld Japan WEST、10月19〜21日に大阪で開催予定 ｜</span>
+      <span>06｜サロンAI活用は「客単価とリピートを守る経営手段」へ ｜</span>
+      <span>07｜韓国がKビューティ支援法を成立 欧米大手は成長回復の兆し ｜</span>
+    </div>
+  </div>
+
+  <div class="slider-stage">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="cards" id="cards">
+
+      <div class="card active" data-index="0">
+        <div class="card-top">
+          <span class="tag">市場動向</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>美容室市場は1兆3063億円、前年比-5.9% 利用減の理由は「美容代の節約」</h2>
+        <p class="summary">リクルートの調査機関による美容センサス2026年上期で、美容室の市場規模は前年比5.9%減となり、利用が減った理由は「美容代の節約」が首位だった。一方、アイビューティーやエステ、リラクゼーションでは男性市場が拡大し、目元ケアやスキンケアなど自己投資型の施術は1回の利用額・年間回数とも増加。身だしなみ領域は縮小、自己投資領域は伸長という二極化が鮮明だ。</p>
+        <div class="meta"><span>出典：ホットペッパービューティーアカデミー</span><span>2026年上期調査</span></div>
+        <div class="num">01</div>
+      </div>
+
+      <div class="card" data-index="1">
+        <div class="card-top">
+          <span class="tag">経営課題</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>美容室の倒産、2年連続で過去最多 約半数が開業10年未満の「短命化」</h2>
+        <p class="summary">帝国データバンクの集計では、2025年の美容室倒産は2年連続で過去最多を更新した。設立10年未満の店が49.0%と約半数を占め、開店から倒産までの平均期間も13.0年と前年の14.1年より短くなった。人手不足・コスト高・値上げの難しさという「三重苦」のなか、コロナ支援で持ちこたえた時期と違い、店の短命化が再び目立ってきたと指摘されている。</p>
+        <div class="meta"><span>出典：帝国データバンク（配信：財経新聞）</span><span>2025年実績</span></div>
+        <div class="num">02</div>
+      </div>
+
+      <div class="card" data-index="2">
+        <div class="card-top">
+          <span class="tag">法改正</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>10月1日施行：カスハラ対策・求職者セクハラ防止がすべての事業主の義務に</h2>
+        <p class="summary">2026年10月1日、改正労働施策総合推進法が施行され、カスタマーハラスメント対策と求職者等へのセクハラ防止措置が事業主の義務になった。スタッフを雇用していれば中小規模でも対象で、方針の明確化と周知、相談体制の整備、事後の迅速な対応、抑止措置などが求められる。接客業のサロンは、対応ルールの掲示やスタッフが相談できる窓口づくりを早めに整えたい。</p>
+        <div class="meta"><span>出典：厚生労働省指針／社労士・企業解説</span><span>2026.10.01施行</span></div>
+        <div class="num">03</div>
+      </div>
+
+      <div class="card" data-index="3">
+        <div class="card-top">
+          <span class="tag">トレンド</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>2026年秋のカラーは「カシスブラウン」 ツヤと深みのブラウン系が主役</h2>
+        <p class="summary">人気サロンの美容師3人が挙げた2026年秋のカラー予測は、派手な色みよりツヤと深みを重視するブラウン系の人気がさらに高まる、というもの。ファッション全体のシックな流れや韓国系スタイルの影響で暗めで深みのある髪色への支持が強く、紅葉のような温かみのあるカシスブラウンが注目株だ。レイヤースタイルとの相性もよく、大人世代にも提案しやすいとされる。</p>
+        <div class="meta"><span>出典：アリミノ アプレス</span><span>2026.08.27</span></div>
+        <div class="num">04</div>
+      </div>
+
+      <div class="card" data-index="4">
+        <div class="card-top">
+          <span class="tag">業界イベント</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>Beautyworld Japan WEST、10月19〜21日に大阪で開催予定</h2>
+        <p class="summary">西日本最大級の美容トレードショー「Beautyworld Japan WEST」が、2026年10月19〜21日に大阪のインテックス大阪で開かれると展示会情報サイトが伝えている。睡眠・リカバリーの新ゾーンや女性ヘルスケア領域「Fem more」など、美容・ヘアネイル・ウェルネスまで幅広い出展が見込まれ、導入商材やメニュー開発のヒント探しに向く。日程・会場は公式サイトで要確認。</p>
+        <div class="meta"><span>出典：展示会情報ポータル各社</span><span>2026.10.19–21</span></div>
+        <div class="num">05</div>
+      </div>
+
+      <div class="card" data-index="5">
+        <div class="card-top">
+          <span class="tag">AI・DX</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>サロンのAI活用は「客単価とリピートを守る経営手段」へ</h2>
+        <p class="summary">2026年のサロンAI活用は、人手不足を補う効率化ツールから、縮む市場で客単価とリピートを守る経営手段へと位置づけが変わりつつあると解説されている。美容室市場が縮小する一方、美容所数は27万7,752施設（前年度比1.3%増）と増え続け、1店あたりの取り分は削られる構図だ。肌診断AIなどの導入例とともに、予約サイトのAI画像ルールなど線引きにも注意したい。</p>
+        <div class="meta"><span>出典：AI活用ガイド記事（ai-revolution.co.jp）</span><span>2026年</span></div>
+        <div class="num">06</div>
+      </div>
+
+      <div class="card" data-index="6">
+        <div class="card-top">
+          <span class="tag">海外動向</span>
+          <span class="heat">🔥🔥</span>
+        </div>
+        <h2>韓国がKビューティ支援法を成立 欧米大手は成長回復の兆し</h2>
+        <p class="summary">業界週報によると、韓国がKビューティ産業の成長を後押しする画期的な法律を成立させた。同じ時期、コティが販売成長に復帰し、エスティ ローダーも2026年度に売上5%増と成長軌道へ戻るなど、大手の業績にも持ち直しの動きがみられる。韓国式ラッシュリフトなど韓国発の施術が需要上位に挙がる中、サロンメニューへの波及にも注目したい。</p>
+        <div class="meta"><span>出典：Global Cosmetics News 週報／Happi</span><span>2026.08</span></div>
+        <div class="num">07</div>
+      </div>
+
+    </div>
+
+    <div class="controls">
+      <div class="nav-btn" id="prevBtn">←</div>
+      <div class="dots" id="dots"></div>
+      <div class="nav-btn" id="nextBtn">→</div>
+    </div>
+    <div class="counter" id="counter">01 / 07</div>
+  </div>
+
+  <div class="footer-note">
+    ※本レポートは公開情報をもとにした要約です。詳細は各出典元をご確認ください。<br>
+    次回は来週更新予定です。
+  </div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const dotsWrap = document.getElementById('dots');
+  const total = cards.length;
+  let current = 0;
+
+  for(let i=0;i<total;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=> goTo(i));
+    dotsWrap.appendChild(d);
+  }
+  const dots = document.querySelectorAll('.dot');
+  const progressFill = document.getElementById('progressFill');
+  const counter = document.getElementById('counter');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function render(){
+    cards.forEach((c, i)=>{
+      c.classList.remove('active','prev');
+      if(i === current) c.classList.add('active');
+      else if(i < current) c.classList.add('prev');
+    });
+    dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    progressFill.style.width = ((current+1)/total*100) + '%';
+    counter.textContent = pad(current+1) + ' / ' + pad(total);
+  }
+
+  function goTo(i){
+    current = (i+total) % total;
+    // back button: 履歴があれば前のページへ、なければ一覧へ
+  document.getElementById('backBtn').addEventListener('click', (e)=>{
+    if(window.history.length > 1){
+      e.preventDefault();
+      window.history.back();
+    }
+  });
+
+  render();
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=> goTo(current+1));
+  document.getElementById('prevBtn').addEventListener('click', ()=> goTo(current-1));
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight') goTo(current+1);
+    if(e.key === 'ArrowLeft') goTo(current-1);
+  });
+
+  // touch swipe
+  let touchStartX = 0;
+  const stage = document.querySelector('.slider-stage');
+  stage.addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  stage.addEventListener('touchend', (e)=>{
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if(dx > 50) goTo(current-1);
+    if(dx < -50) goTo(current+1);
+  }, {passive:true});
+
+  render();
+</script>
+
+</body>
+</html>
