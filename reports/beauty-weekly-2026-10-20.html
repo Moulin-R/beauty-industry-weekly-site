@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>週次美容業界動向レポート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose: #c98a9c;
+    --rose-deep: #a8617a;
+    --gold: #c9a86a;
+    --cream: #faf6f1;
+    --cream-deep: #f1e9e0;
+    --ink: #2e2622;
+    --ink-soft: #6b5d55;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    background: radial-gradient(circle at 20% 10%, #f7e9ec 0%, #f3ece3 45%, #ece2d6 100%);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 72px 16px 48px;
+  }
+
+  .header{
+    text-align:center;
+    max-width:720px;
+    margin-bottom: 28px;
+    opacity:0;
+    animation: fadeDown .8s ease forwards;
+  }
+  .header .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing: 0.35em;
+    font-size: 13px;
+    color: var(--rose-deep);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header h1{
+    font-family:'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: clamp(26px, 5vw, 40px);
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    line-height:1.4;
+  }
+  .header .sub{
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  /* ticker */
+  .ticker-wrap{
+    width:100%;
+    max-width: 880px;
+    height: 56px;
+    overflow:hidden;
+    border-top: 1px solid rgba(169,97,122,0.25);
+    border-bottom: 1px solid rgba(169,97,122,0.25);
+    margin-bottom: 30px;
+    background: #f7eef0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .ticker-track{
+    display:flex;
+    align-items:center;
+    height: 56px;
+    width: max-content;
+    white-space:nowrap;
+    animation: scrollTicker 50s linear infinite;
+    will-change: transform;
+  }
+  .ticker-track span{
+    flex: 0 0 auto;
+    display:block;
+    padding: 0 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--rose-deep);
+    white-space:nowrap;
+  }
+  @keyframes scrollTicker{
+    0%{ transform: translateX(0); }
+    100%{ transform: translateX(-50%); }
+  }
+
+  .slider-stage{
+    position:relative;
+    width:100%;
+    max-width: 620px;
+    perspective: 1400px;
+  }
+
+  .progress-track{
+    width:100%;
+    max-width: 620px;
+    height: 3px;
+    background: rgba(169,97,122,0.15);
+    border-radius: 4px;
+    margin-bottom: 22px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background: linear-gradient(90deg, var(--gold), var(--rose-deep));
+    width: 14.28%;
+    transition: width .45s cubic-bezier(.65,0,.35,1);
+  }
+
+  .cards{
+    position:relative;
+    width:100%;
+    height: 480px;
+  }
+
+  .card{
+    position:absolute;
+    inset:0;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 22px;
+    box-shadow: 0 20px 50px -18px rgba(120,70,90,0.35), inset 0 1px 0 rgba(255,255,255,0.7);
+    padding: 34px 32px 28px;
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    transform: translateX(40px) scale(.97);
+    pointer-events:none;
+    transition: opacity .5s cubic-bezier(.65,0,.35,1), transform .5s cubic-bezier(.65,0,.35,1);
+  }
+  .card.active{
+    opacity:1;
+    transform: translateX(0) scale(1);
+    pointer-events:auto;
+  }
+  .card.prev{
+    opacity:0;
+    transform: translateX(-40px) scale(.97);
+  }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom: 18px;
+  }
+  .tag{
+    display:inline-block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: linear-gradient(135deg, var(--rose-deep), var(--gold));
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+  .heat{
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .card h2{
+    font-family:'Noto Serif JP', serif;
+    font-size: clamp(19px, 3.4vw, 24px);
+    line-height:1.55;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .card p.summary{
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    flex-grow:1;
+  }
+  .card .meta{
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(169,97,122,0.3);
+    display:flex;
+    justify-content:space-between;
+    font-size: 11.5px;
+    color: var(--rose-deep);
+    letter-spacing: 0.03em;
+  }
+  .card .num{
+    position:absolute;
+    bottom: 18px;
+    right: 26px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 52px;
+    color: rgba(169,97,122,0.1);
+    font-weight:600;
+    pointer-events:none;
+  }
+
+  .controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 22px;
+    margin-top: 26px;
+  }
+  .nav-btn{
+    width: 46px;
+    height:46px;
+    border-radius:50%;
+    border: 1px solid rgba(169,97,122,0.35);
+    background: rgba(255,255,255,0.6);
+    color: var(--rose-deep);
+    font-size: 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition: all .25s ease;
+  }
+  .nav-btn:hover{
+    background: var(--rose-deep);
+    color: #fff;
+    transform: scale(1.06);
+  }
+
+  .dots{
+    display:flex;
+    gap: 9px;
+  }
+  .dot{
+    width: 8px;
+    height:8px;
+    border-radius:50%;
+    background: rgba(169,97,122,0.25);
+    cursor:pointer;
+    transition: all .3s ease;
+  }
+  .dot.active{
+    background: var(--rose-deep);
+    width: 22px;
+    border-radius: 5px;
+  }
+
+  .counter{
+    margin-top: 14px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+  }
+
+  .footer-note{
+    margin-top: 34px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align:center;
+    max-width: 560px;
+    line-height: 1.8;
+    opacity: .75;
+  }
+
+  @keyframes fadeDown{
+    from{ opacity:0; transform: translateY(-14px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px){
+    .cards{ height: 580px; }
+    .card{ padding: 26px 22px 22px; }
+    .ticker-wrap{ height: 50px; }
+    .ticker-track{ height: 50px; }
+    .ticker-track span{ padding: 0 20px; font-size: 13px; }
+  }
+
+  .back-btn{
+    position:absolute;
+    top:calc(14px + env(safe-area-inset-top, 0px));
+    left:14px;
+    z-index:20;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:8px 16px;
+    min-height:40px;
+    border-radius:100px;
+    font-family:'Noto Sans JP', sans-serif;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-decoration:none;
+    transition:transform .25s ease, background .25s ease, color .25s ease;
+  }
+  .back-btn:hover{ transform:translateX(-3px); }
+  .back-btn{
+    color:var(--rose-deep);
+    background:rgba(255,255,255,0.6);
+    border:1px solid rgba(169,97,122,0.35);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+  }
+  .back-btn:hover{ background:var(--rose-deep); color:#fff; }
+</style>
+</head>
+<body>
+
+  <a class="back-btn" id="backBtn" href="../index.html" aria-label="一覧に戻る">← 戻る</a>
+
+  <div class="header">
+    <div class="eyebrow">Weekly Beauty Industry Report</div>
+    <h1>週次美容業界動向レポート</h1>
+    <div class="sub">2026年10月20日号 ｜ 全7件</div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>01｜最低賃金が10/1改定、全国平均1,177円 過去2番目の上げ幅 ｜</span>
+      <span>02｜美容室市場1兆3063億円 前年比-5.9%、「自己投資型」は堅調 ｜</span>
+      <span>03｜美容業の倒産、2025年は120件で過去20年最多 ｜</span>
+      <span>04｜2026年秋カラー予測は「カシスブラウン」「ヘーゼルオリーブ」 ｜</span>
+      <span>05｜K-ビューティー輸出が過去最高水準、海外展開が加速 ｜</span>
+      <span>06｜資生堂がSheinを提訴、無許可販売で約260万ユーロ ｜</span>
+      <span>07｜ガルデルマ、ZO Skin Healthを15億ドルで買収へ ｜</span>
+      <span>01｜最低賃金が10/1改定、全国平均1,177円 過去2番目の上げ幅 ｜</span>
+      <span>02｜美容室市場1兆3063億円 前年比-5.9%、「自己投資型」は堅調 ｜</span>
+      <span>03｜美容業の倒産、2025年は120件で過去20年最多 ｜</span>
+      <span>04｜2026年秋カラー予測は「カシスブラウン」「ヘーゼルオリーブ」 ｜</span>
+      <span>05｜K-ビューティー輸出が過去最高水準、海外展開が加速 ｜</span>
+      <span>06｜資生堂がSheinを提訴、無許可販売で約260万ユーロ ｜</span>
+      <span>07｜ガルデルマ、ZO Skin Healthを15億ドルで買収へ ｜</span>
+    </div>
+  </div>
+
+  <div class="slider-stage">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="cards" id="cards">
+
+      <div class="card active" data-index="0">
+        <div class="card-top">
+          <span class="tag">法改正</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>最低賃金が10/1改定、全国平均1,177円で過去2番目の上げ幅</h2>
+        <p class="summary">2026年度の最低賃金は全国平均で56円上がり1,177円に。昨年度の66円増に次ぐ引き上げ幅となった。首都圏では東京1,280円、神奈川1,279円、埼玉1,196円、千葉1,195円が10月1日から適用される。アシスタントやパートの時給、シフト設計、メニュー価格の見直しを早めに点検したい。</p>
+        <div class="meta"><span>出典：共同通信／ITSCOM</span><span>2026.09</span></div>
+        <div class="num">01</div>
+      </div>
+
+      <div class="card" data-index="1">
+        <div class="card-top">
+          <span class="tag">市場動向</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>美容室市場は1兆3063億円、前年比-5.9%と縮小</h2>
+        <p class="summary">ホットペッパービューティーアカデミーの美容センサス2026年上期によると、美容室の市場規模は1兆3063億円。利用率と年間利用回数の減少が主因で、物価高による節約志向が背景とされる。一方、目元ケアやスキンケアなど「自己投資型」の領域は単価・頻度とも伸びており、ケア系メニューの磨き込みがヒントになりそうだ。</p>
+        <div class="meta"><span>出典：ホットペッパービューティーアカデミー</span><span>2026.06</span></div>
+        <div class="num">02</div>
+      </div>
+
+      <div class="card" data-index="2">
+        <div class="card-top">
+          <span class="tag">経営課題</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>美容業の倒産、2025年は120件で過去20年最多</h2>
+        <p class="summary">東京商工リサーチの分析では、2025年の美容業（美容室含む）の倒産は120件で前年比5.2%増となり、過去20年で最多。原因は販売不振が約8割を占め、形態別では破産が9割超と、立て直しの難しさがうかがえる。人件費・資材高と競合増が重なる中、価格改定と固定客づくりの両立が分かれ目になりそうだ。</p>
+        <div class="meta"><span>出典：東京商工リサーチ（TSRデータインサイト）</span><span>2026.01</span></div>
+        <div class="num">03</div>
+      </div>
+
+      <div class="card" data-index="3">
+        <div class="card-top">
+          <span class="tag">トレンド</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>2026年秋のカラー予測は「カシスブラウン」「ヘーゼルオリーブ」</h2>
+        <p class="summary">アリミノの企画で、人気サロンのスタイリストが2026年秋のおすすめとして挙げたのは、紅葉のような温かみと色持ちが魅力の「カシスブラウン」と、黄みを活かして透明感を出す「ヘーゼルオリーブ」。夏から続く血色感・ブラウン系の流れを受けた落ち着いた色味で、ブリーチなしでも提案しやすいとされる。</p>
+        <div class="meta"><span>出典：アリミノ／ホットペッパービューティー</span><span>2026.08</span></div>
+        <div class="num">04</div>
+      </div>
+
+      <div class="card" data-index="4">
+        <div class="card-top">
+          <span class="tag">海外展開</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>K-ビューティー輸出が過去最高水準に、海外展開が加速</h2>
+        <p class="summary">Global Cosmetics Newsの週次レビューは、韓国美容企業の海外展開が特に活発で、輸出が過去最高水準に達したと伝えた。CJオリーブヤングもセフォラ経由で東南アジアと香港へ流通を広げている。8月には韓国でK-ビューティー支援の法律も成立しており、国を挙げた後押しが続く。国内の韓国トレンド需要にも影響しそうだ。</p>
+        <div class="meta"><span>出典：Global Cosmetics News</span><span>2026.10.10</span></div>
+        <div class="num">05</div>
+      </div>
+
+      <div class="card" data-index="5">
+        <div class="card-top">
+          <span class="tag">業界動向</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>資生堂がSheinを提訴、無許可販売で約260万ユーロ</h2>
+        <p class="summary">資生堂が、Sheinでの無許可の化粧品販売をめぐり、約260万ユーロの訴訟を起こしたと報じられた。ブランドの位置づけや選択的な販売契約を守るため、ECマーケットプレイス上の流通をどう管理するかが、高級化粧品メーカーの課題になっている。サロン専売品でも、正規ルート外の出回りは他人事ではなさそうだ。</p>
+        <div class="meta"><span>出典：Global Cosmetics News</span><span>2026.10</span></div>
+        <div class="num">06</div>
+      </div>
+
+      <div class="card" data-index="6">
+        <div class="card-top">
+          <span class="tag">海外M&A</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>ガルデルマがZO Skin Healthを15億ドルで買収へ</h2>
+        <p class="summary">ガルデルマが、医師向けに取り扱われるスキンケアブランドZO Skin Healthを15億ドルで買収することで合意した。10月第3週の業界レビューで報じられた大型案件の一つ。美容と医療の境界が近づく中、サロンやエステでも、根拠のあるホームケア提案や医療機関との連携がより問われていきそうだ。</p>
+        <div class="meta"><span>出典：Global Cosmetics News（Week 42）</span><span>2026.10.17</span></div>
+        <div class="num">07</div>
+      </div>
+
+    </div>
+
+    <div class="controls">
+      <div class="nav-btn" id="prevBtn">←</div>
+      <div class="dots" id="dots"></div>
+      <div class="nav-btn" id="nextBtn">→</div>
+    </div>
+    <div class="counter" id="counter">01 / 07</div>
+  </div>
+
+  <div class="footer-note">
+    ※本レポートは公開情報をもとにした要約です。詳細は各出典元をご確認ください。<br>
+    収録記事の時期は2026年1月〜10月にわたります。
+  </div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const dotsWrap = document.getElementById('dots');
+  const total = cards.length;
+  let current = 0;
+
+  for(let i=0;i<total;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=> goTo(i));
+    dotsWrap.appendChild(d);
+  }
+  const dots = document.querySelectorAll('.dot');
+  const progressFill = document.getElementById('progressFill');
+  const counter = document.getElementById('counter');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function render(){
+    cards.forEach((c, i)=>{
+      c.classList.remove('active','prev');
+      if(i === current) c.classList.add('active');
+      else if(i < current) c.classList.add('prev');
+    });
+    dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    progressFill.style.width = ((current+1)/total*100) + '%';
+    counter.textContent = pad(current+1) + ' / ' + pad(total);
+  }
+
+  function goTo(i){
+    current = (i+total) % total;
+    render();
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=> goTo(current+1));
+  document.getElementById('prevBtn').addEventListener('click', ()=> goTo(current-1));
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight') goTo(current+1);
+    if(e.key === 'ArrowLeft') goTo(current-1);
+  });
+
+  // touch swipe
+  let touchStartX = 0;
+  const stage = document.querySelector('.slider-stage');
+  stage.addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  stage.addEventListener('touchend', (e)=>{
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if(dx > 50) goTo(current-1);
+    if(dx < -50) goTo(current+1);
+  }, {passive:true});
+
+  render();
+</script>
+
+
+<script>
+  // 戻るボタン：一覧から来た場合は直前のページへ、直接開いた場合は一覧(index.html)へ
+  (function(){
+    var b = document.getElementById('backBtn');
+    if(!b) return;
+    b.addEventListener('click', function(e){
+      try{
+        if(document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1){
+          e.preventDefault();
+          history.back();
+        }
+      }catch(err){}
+    });
+  })();
+</script>
+</body>
+</html>
