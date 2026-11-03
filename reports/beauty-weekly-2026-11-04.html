@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>週次美容業界動向レポート 2026.11.04</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose: #c98a9c;
+    --rose-deep: #a8617a;
+    --gold: #c9a86a;
+    --cream: #faf6f1;
+    --cream-deep: #f1e9e0;
+    --ink: #2e2622;
+    --ink-soft: #6b5d55;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    background: radial-gradient(circle at 20% 10%, #f7e9ec 0%, #f3ece3 45%, #ece2d6 100%);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: calc(env(safe-area-inset-top,0px) + 68px) 16px 48px;
+  }
+
+  .header{
+    text-align:center;
+    max-width:720px;
+    margin-bottom: 28px;
+    opacity:0;
+    animation: fadeDown .8s ease forwards;
+  }
+  .header .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing: 0.35em;
+    font-size: 13px;
+    color: var(--rose-deep);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header h1{
+    font-family:'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: clamp(26px, 5vw, 40px);
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    line-height:1.4;
+  }
+  .header .sub{
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  /* ticker */
+  .ticker-wrap{
+    width:100%;
+    max-width: 880px;
+    height: 56px;
+    overflow:hidden;
+    border-top: 1px solid rgba(169,97,122,0.25);
+    border-bottom: 1px solid rgba(169,97,122,0.25);
+    margin-bottom: 30px;
+    background: #f7eef0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .ticker-track{
+    display:flex;
+    align-items:center;
+    height: 56px;
+    width: max-content;
+    white-space:nowrap;
+    animation: scrollTicker 50s linear infinite;
+    will-change: transform;
+  }
+  .ticker-track span{
+    flex: 0 0 auto;
+    display:block;
+    padding: 0 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--rose-deep);
+    white-space:nowrap;
+  }
+  @keyframes scrollTicker{
+    0%{ transform: translateX(0); }
+    100%{ transform: translateX(-50%); }
+  }
+
+  .slider-stage{
+    position:relative;
+    width:100%;
+    max-width: 620px;
+    perspective: 1400px;
+  }
+
+  .progress-track{
+    width:100%;
+    max-width: 620px;
+    height: 3px;
+    background: rgba(169,97,122,0.15);
+    border-radius: 4px;
+    margin-bottom: 22px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background: linear-gradient(90deg, var(--gold), var(--rose-deep));
+    width: 14.28%;
+    transition: width .45s cubic-bezier(.65,0,.35,1);
+  }
+
+  .cards{
+    position:relative;
+    width:100%;
+    height: 480px;
+  }
+
+  .card{
+    position:absolute;
+    inset:0;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 22px;
+    box-shadow: 0 20px 50px -18px rgba(120,70,90,0.35), inset 0 1px 0 rgba(255,255,255,0.7);
+    padding: 34px 32px 28px;
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    transform: translateX(40px) scale(.97);
+    pointer-events:none;
+    transition: opacity .5s cubic-bezier(.65,0,.35,1), transform .5s cubic-bezier(.65,0,.35,1);
+  }
+  .card.active{
+    opacity:1;
+    transform: translateX(0) scale(1);
+    pointer-events:auto;
+  }
+  .card.prev{
+    opacity:0;
+    transform: translateX(-40px) scale(.97);
+  }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom: 18px;
+  }
+  .tag{
+    display:inline-block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: linear-gradient(135deg, var(--rose-deep), var(--gold));
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+  .heat{
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .card h2{
+    font-family:'Noto Serif JP', serif;
+    font-size: clamp(19px, 3.4vw, 24px);
+    line-height:1.55;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .card p.summary{
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    flex-grow:1;
+  }
+  .card .meta{
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(169,97,122,0.3);
+    display:flex;
+    justify-content:space-between;
+    font-size: 11.5px;
+    color: var(--rose-deep);
+    letter-spacing: 0.03em;
+  }
+  .card .num{
+    position:absolute;
+    bottom: 18px;
+    right: 26px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 52px;
+    color: rgba(169,97,122,0.1);
+    font-weight:600;
+    pointer-events:none;
+  }
+
+  .controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 22px;
+    margin-top: 26px;
+  }
+  .nav-btn{
+    width: 46px;
+    height:46px;
+    border-radius:50%;
+    border: 1px solid rgba(169,97,122,0.35);
+    background: rgba(255,255,255,0.6);
+    color: var(--rose-deep);
+    font-size: 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition: all .25s ease;
+  }
+  .nav-btn:hover{
+    background: var(--rose-deep);
+    color: #fff;
+    transform: scale(1.06);
+  }
+
+  .dots{
+    display:flex;
+    gap: 9px;
+  }
+  .dot{
+    width: 8px;
+    height:8px;
+    border-radius:50%;
+    background: rgba(169,97,122,0.25);
+    cursor:pointer;
+    transition: all .3s ease;
+  }
+  .dot.active{
+    background: var(--rose-deep);
+    width: 22px;
+    border-radius: 5px;
+  }
+
+  .counter{
+    margin-top: 14px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+  }
+
+  .footer-note{
+    margin-top: 34px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align:center;
+    max-width: 560px;
+    line-height: 1.8;
+    opacity: .75;
+  }
+
+  @keyframes fadeDown{
+    from{ opacity:0; transform: translateY(-14px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px){
+    .cards{ height: 520px; }
+    .card{ padding: 26px 22px 22px; }
+    .ticker-wrap{ height: 50px; }
+    .ticker-track{ height: 50px; }
+    .ticker-track span{ padding: 0 20px; font-size: 13px; }
+  }
+
+  /* 戻るボタン（左上固定） */
+  .back-btn{
+    position:fixed;
+    top: calc(env(safe-area-inset-top,0px) + 12px);
+    left: 12px;
+    z-index:100;
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 9px 16px 9px 12px;
+    border-radius:100px;
+    border:1px solid rgba(169,97,122,0.35);
+    background: rgba(255,255,255,0.7);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    color: var(--rose-deep);
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:13px; font-weight:500; letter-spacing:.05em;
+    text-decoration:none; cursor:pointer;
+    box-shadow: 0 6px 18px -8px rgba(120,70,90,0.35);
+    transition: all .25s ease;
+  }
+  .back-btn:hover{ background: var(--rose-deep); color:#fff; transform: translateX(-2px); }
+  .back-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+  .back-btn .arrow{ font-size:16px; line-height:1; }
+</style>
+</head>
+<body>
+
+  <a class="back-btn" id="backBtn" href="../index.html" aria-label="前のページに戻る">
+    <span class="arrow">←</span><span>戻る</span>
+  </a>
+
+  <div class="header">
+    <div class="eyebrow">Weekly Beauty Industry Report</div>
+    <h1>週次美容業界動向レポート</h1>
+    <div class="sub">2026年10月28日 〜 11月4日 ｜ 全7件</div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>01｜美容業は全指標でDIマイナス圏 顧客減が最大の悩み ｜</span>
+      <span>02｜美容所は28万1,687施設に 首都圏だけで1,327施設増 ｜</span>
+      <span>03｜山梨の美容室運営MICROが破産 負債約2億円 ｜</span>
+      <span>04｜「J-Beauty産業振興議連」が発足 高市首相も入会 ｜</span>
+      <span>05｜退店スタッフ再雇用・生成AIでLINE配信 公庫が事例公表 ｜</span>
+      <span>06｜「ラクして美しく」パーマの新価値を提案 HAIR MODE12月号 ｜</span>
+      <span>07｜日本公庫11月の金利 マル経融資は0.1%低下の2.95%に ｜</span>
+      <span>01｜美容業は全指標でDIマイナス圏 顧客減が最大の悩み ｜</span>
+      <span>02｜美容所は28万1,687施設に 首都圏だけで1,327施設増 ｜</span>
+      <span>03｜山梨の美容室運営MICROが破産 負債約2億円 ｜</span>
+      <span>04｜「J-Beauty産業振興議連」が発足 高市首相も入会 ｜</span>
+      <span>05｜退店スタッフ再雇用・生成AIでLINE配信 公庫が事例公表 ｜</span>
+      <span>06｜「ラクして美しく」パーマの新価値を提案 HAIR MODE12月号 ｜</span>
+      <span>07｜日本公庫11月の金利 マル経融資は0.1%低下の2.95%に ｜</span>
+    </div>
+  </div>
+
+  <div class="slider-stage">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="cards" id="cards">
+
+      <div class="card active" data-index="0">
+        <div class="card-top">
+          <span class="tag">経営課題</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>美容業は全指標でDIマイナス圏 顧客数の減少が最大の悩み</h2>
+        <p class="summary">日本政策金融公庫が10月29日に公表した2026年7〜9月期の景気動向調査では、美容業は前期より改善したものの、業況・売上・利用客数などすべての指標でDIがマイナスにとどまった。経営上の問題点に「顧客数の減少」を挙げた事業者は半数を超え、人件費上昇分を価格に転嫁できないという声も3割以上。理容業との差が目立つ結果となった。</p>
+        <div class="meta"><span>出典：理美容ニュース／日本政策金融公庫</span><span>2026.10.29</span></div>
+        <div class="num">01</div>
+      </div>
+
+      <div class="card" data-index="1">
+        <div class="card-top">
+          <span class="tag">市場動向</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>美容所は28万1,687施設に 首都圏だけで1,327施設増</h2>
+        <p class="summary">厚生労働省の令和7年度衛生行政報告例（10月27日発表）によると、年度末の美容所は前年度比3,935施設（1.4%）増、従業美容師は59万6,942人で8,651人増えた。東京・神奈川・埼玉・千葉の1都3県で合計1,327施設が増加した一方、和歌山県など地方では減少も。店舗が増え続ける供給過剰の構図が、数字にも表れている。</p>
+        <div class="meta"><span>出典：理美容ニュース／厚生労働省</span><span>2026.10.29</span></div>
+        <div class="num">02</div>
+      </div>
+
+      <div class="card" data-index="2">
+        <div class="card-top">
+          <span class="tag">倒産動向</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>山梨の美容室運営MICROが破産 9店舗・負債は約2億円</h2>
+        <p class="summary">山梨県を中心に愛知・神奈川・新潟などで9店舗を展開していた美容室運営会社MICROが、10月16日付で甲府地裁から破産手続き開始決定を受けた。積極的な出店投資を進めるなか、物価高を背景とした客数減で資金繰りが悪化したと報じられている。負債は2億円弱で、理美容業界の倒産としては比較的大きな規模。拡大路線のリスクを映す事例だ。</p>
+        <div class="meta"><span>出典：理美容ニュース（帝国データバンク情報）</span><span>2026.10.30</span></div>
+        <div class="num">03</div>
+      </div>
+
+      <div class="card" data-index="3">
+        <div class="card-top">
+          <span class="tag">海外展開</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>「J-Beauty産業振興議連」が発足 高市首相も入会</h2>
+        <p class="summary">10月16日、化粧品・エステ・理美容など美容産業の海外展開を後押しする自民党の議連が設立総会を開き、林芳正氏が会長に就いた。首相も入会し、最高顧問への就任が要請されていると報じられている。理美容やネイル、エステも含む民間コンソーシアムは12月の設立予定で、化粧品の輸出・海外現地販売を2033年度に2兆円規模へ（2024年は約8000億円）とする目標も掲げられている。</p>
+        <div class="meta"><span>出典：WWD JAPAN／共同通信</span><span>2026.10.16</span></div>
+        <div class="num">04</div>
+      </div>
+
+      <div class="card" data-index="4">
+        <div class="card-top">
+          <span class="tag">経営事例</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>退店スタッフの再雇用、生成AIでLINE配信 公庫が経営の工夫を公表</h2>
+        <p class="summary">日本公庫が10月29日に公表した取り組み事例では、美容業で辞めたスタッフに声をかけ、育児が落ち着いた人に復帰してもらった北海道の例が紹介された。理容業では、空き状況や休業日の案内を生成AIで作成してLINE配信し、空き時間の減少につなげた沖縄の例も。人手不足や集客難に、身近な工夫で向き合うヒントになりそうだ。</p>
+        <div class="meta"><span>出典：理美容ニュース／日本政策金融公庫</span><span>2026.11.02</span></div>
+        <div class="num">05</div>
+      </div>
+
+      <div class="card" data-index="5">
+        <div class="card-top">
+          <span class="tag">スタイルトレンド</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>「ラクして美しく」パーマの新たな価値を提案 HAIR MODE12月号</h2>
+        <p class="summary">美容専門誌『HAIR MODE』2026年12月号の特集テーマは「パーマ」。パーマを敬遠する女性が増え、業界全体で売上が低迷するなか、「忙しい現代女性を救うパーマ」という切り口で新たな価値を打ち出す。家計調査でもパーマ支出は前年比8.2%減と報じられており、手間の少なさを軸にしたメニューの見直しが一つのヒントになりそうだ。</p>
+        <div class="meta"><span>出典：理美容ニュース</span><span>2026.11.03</span></div>
+        <div class="num">06</div>
+      </div>
+
+      <div class="card" data-index="6">
+        <div class="card-top">
+          <span class="tag">融資金利</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>日本公庫11月の金利、マル経融資は0.1%低下の2.95%に</h2>
+        <p class="summary">日本政策金融公庫は11月2日付で貸付金利を改定し、3か月連続で上昇していたマル経融資（特利F）が0.1%下がって2.95%となった。無担保・有担保の基準金利も上限・下限とも引き下げられている（10月1日時点の改定前水準は無担保3.95〜5.35%、有担保2.95〜4.95%）。設備投資や借り換えを検討中の経営者は、条件を見直す好機かもしれない。</p>
+        <div class="meta"><span>出典：理美容ニュース／日本政策金融公庫</span><span>2026.11.02</span></div>
+        <div class="num">07</div>
+      </div>
+
+    </div>
+
+    <div class="controls">
+      <div class="nav-btn" id="prevBtn">←</div>
+      <div class="dots" id="dots"></div>
+      <div class="nav-btn" id="nextBtn">→</div>
+    </div>
+    <div class="counter" id="counter">01 / 07</div>
+  </div>
+
+  <div class="footer-note">
+    ※本レポートは公開情報をもとにした要約です。詳細は各出典元をご確認ください。<br>
+    次回は来週更新予定です。
+  </div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const dotsWrap = document.getElementById('dots');
+  const total = cards.length;
+  let current = 0;
+
+  for(let i=0;i<total;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=> goTo(i));
+    dotsWrap.appendChild(d);
+  }
+  const dots = document.querySelectorAll('.dot');
+  const progressFill = document.getElementById('progressFill');
+  const counter = document.getElementById('counter');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function render(){
+    cards.forEach((c, i)=>{
+      c.classList.remove('active','prev');
+      if(i === current) c.classList.add('active');
+      else if(i < current) c.classList.add('prev');
+    });
+    dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    progressFill.style.width = ((current+1)/total*100) + '%';
+    counter.textContent = pad(current+1) + ' / ' + pad(total);
+  }
+
+  function goTo(i){
+    current = (i+total) % total;
+    render();
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=> goTo(current+1));
+  document.getElementById('prevBtn').addEventListener('click', ()=> goTo(current-1));
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight') goTo(current+1);
+    if(e.key === 'ArrowLeft') goTo(current-1);
+  });
+
+  // touch swipe
+  let touchStartX = 0;
+  const stage = document.querySelector('.slider-stage');
+  stage.addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  stage.addEventListener('touchend', (e)=>{
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if(dx > 50) goTo(current-1);
+    if(dx < -50) goTo(current+1);
+  }, {passive:true});
+
+  // 戻るボタン：履歴があれば前のページへ、なければ index.html へ
+  document.getElementById('backBtn').addEventListener('click', (e)=>{
+    if(window.history.length > 1){ e.preventDefault(); window.history.back(); }
+  });
+
+  render();
+</script>
+
+</body>
+</html>
