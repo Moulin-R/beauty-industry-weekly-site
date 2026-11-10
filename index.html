@@ -1,82 +1,165 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="beauty">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>週次美容業界動向レポート ｜ アーカイブ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --rose:#c98a9c;
-    --rose-deep:#a8617a;
-    --gold:#c9a86a;
-    --cream:#faf6f1;
-    --ink:#2e2622;
-    --ink-soft:#6b5d55;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{
-    min-height:100vh;
-    background:radial-gradient(circle at 20% 10%, #f7e9ec 0%, #f3ece3 45%, #ece2d6 100%);
-    font-family:'Noto Sans JP', sans-serif;
-    color:var(--ink);
-    overflow-x:hidden;
-  }
-  body{display:flex;flex-direction:column;align-items:center;padding:48px 20px 64px;}
-  .header{text-align:center;max-width:720px;margin-bottom:40px;}
-  .header .eyebrow{font-family:'Cormorant Garamond',serif;letter-spacing:.35em;font-size:13px;color:var(--rose-deep);text-transform:uppercase;margin-bottom:10px;}
-  .header h1{font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(26px,5vw,40px);letter-spacing:.04em;line-height:1.4;}
-  .header .sub{margin-top:12px;font-size:13px;color:var(--ink-soft);letter-spacing:.05em;}
-
-  .archive-list{width:100%;max-width:720px;display:flex;flex-direction:column;gap:16px;}
-  .archive-card{
-    display:flex;align-items:center;justify-content:space-between;gap:20px;
-    background:rgba(255,255,255,0.6);
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    border:1px solid rgba(255,255,255,0.7);
-    border-radius:18px;padding:22px 26px;text-decoration:none;color:var(--ink);
-    box-shadow:0 16px 40px -20px rgba(120,70,90,0.35);
-    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .archive-card:hover{transform:translateY(-3px);border-color:var(--rose);box-shadow:0 20px 44px -18px rgba(120,70,90,0.45);}
-  .archive-card.latest{border:1px solid var(--rose-deep);}
-  .archive-card .info{flex-grow:1;}
-  .archive-card .badge{
-    display:inline-block;font-size:11px;letter-spacing:.1em;color:#fff;
-    background:linear-gradient(135deg,var(--rose-deep),var(--gold));
-    padding:4px 14px;border-radius:100px;font-weight:500;margin-bottom:10px;
-  }
-  .archive-card h2{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:6px;line-height:1.55;}
-  .archive-card .period{font-size:12px;color:var(--ink-soft);letter-spacing:.03em;}
-  .archive-card .arrow{font-size:22px;color:var(--rose-deep);flex-shrink:0;}
-  .footer-note{margin-top:48px;font-size:11px;color:var(--ink-soft);text-align:center;opacity:.75;line-height:1.8;}
+:root{--bg:#fbf6f3;--bg2:#f3e4de;--ink:#3a2a2a;--muted:#8a7570;--card:#ffffff;--line:#ead8d1;--accent:#b76e79;--accent-ink:#ffffff;--soft:#f7e9e6}
+html[data-theme="ai"]{--bg:#0e1420;--bg2:#141c2c;--ink:#e8eef7;--muted:#8fa0b8;--card:#172133;--line:#26344d;--accent:#5fd0c5;--accent-ink:#08121a;--soft:#1c2940}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100vh}
+body{background:linear-gradient(180deg,var(--bg2),var(--bg) 320px);color:var(--ink);font-family:"Noto Sans JP",sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:56px 16px 72px}
+.eyebrow{font-family:"DM Serif Display",serif;letter-spacing:.18em;font-size:12px;color:var(--accent)}
+h1{font-family:"Noto Serif JP",serif;font-size:clamp(24px,6vw,36px);line-height:1.35;margin:10px 0 12px}
+.lead{color:var(--muted);font-size:14px;margin:0 0 8px}
+.count{font-size:12px;color:var(--muted);margin:0 0 28px}
+.list{display:flex;flex-direction:column;gap:12px}
+.archive-card{display:flex;align-items:center;gap:16px;padding:18px 20px;background:var(--card);border:1px solid var(--line);border-radius:14px;color:inherit;text-decoration:none;transition:transform .2s ease,border-color .2s ease}
+.archive-card:hover,.archive-card:focus-visible{transform:translateY(-2px);border-color:var(--accent);outline:none}
+.archive-card.latest{border-color:var(--accent);background:var(--soft);padding:22px 20px}
+.info{flex:1;min-width:0}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;padding:2px 10px;border-radius:999px;background:var(--accent);color:var(--accent-ink);margin-bottom:8px}
+.archive-card h2{font-size:15px;font-weight:700;line-height:1.6;margin:0 0 6px;overflow-wrap:anywhere}
+.archive-card.latest h2{font-size:17px}
+.period{font-size:12px;color:var(--muted)}
+.arrow{flex:0 0 auto;color:var(--accent);font-size:18px}
+footer{margin-top:40px;font-size:12px;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion:reduce){.archive-card{transition:none}}
 </style>
 </head>
 <body>
-
-  <div class="header">
-    <div class="eyebrow">Weekly Beauty Industry Report</div>
-    <h1>週次美容業界動向レポート</h1>
-    <div class="sub">美容室経営者のための業界動向アーカイブ</div>
-  </div>
-
-  <div class="archive-list" id="archiveList">
-
+<div class="wrap">
+  <div class="eyebrow">BEAUTY INDUSTRY WEEKLY</div>
+  <h1>週次美容業界動向レポート</h1>
+  <p class="lead">美容室・美容業界の最新動向を、毎週8件に絞ってお届けします。</p>
+  <p class="count">全17号 ｜ 最終更新 2026年11月10日</p>
+  <div class="list">
     <a class="archive-card latest" href="reports/beauty-weekly-2026-11-10.html">
       <div class="info">
         <span class="badge">最新号</span>
-        <h2>美容室倒産54件・「106万円の壁」賃金要件撤廃・休眠美容師56.4%・秋冬はレイヤー×ボルドー系ほか</h2>
-        <div class="period">2026年10月 〜 11月10日 ｜ 全7件</div>
+        <h2>カスハラ対策の義務化・家計調査でパーマ代14%減・財務省が美容医療に負担金案・中国でクイックカット急拡大ほか</h2>
+        <div class="period">2026年11月3日 〜 11月10日 ｜ 全8件</div>
       </div>
       <div class="arrow">→</div>
     </a>
-
+    <a class="archive-card" href="reports/beauty-weekly-2026-11-04.html">
+      <div class="info">
+        <h2>美容業は全指標でDIマイナス圏・美容所28万1,687施設に・「J-Beauty産業振興議連」発足・公庫11月の金利ほか</h2>
+        <div class="period">2026年10月28日 〜 11月4日 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-10-27.html">
+      <div class="info">
+        <h2>美容室倒産は上半期54件・薄毛対策市場5,405億円・白髪を染めない人が51.5%・ビューティーワールド大阪が過去最多ほか</h2>
+        <div class="period">2026年10月19日 〜 10月27日 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-10-20.html">
+      <div class="info">
+        <h2>最低賃金が全国平均1,177円に・美容室市場1兆3063億円・秋カラーは「カシスブラウン」・K-ビューティー輸出が過去最高水準ほか</h2>
+        <div class="period">2026年10月20日号 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-10-13.html">
+      <div class="info">
+        <h2>理美容支出が8月は全項目マイナス・「106万円の壁」撤廃・カット専門店を使う男性が34.8%・予約のピークは12月ほか</h2>
+        <div class="period">2026年10月6日 〜 10月13日 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-10-06.html">
+      <div class="info">
+        <h2>カスハラ対策が10月1日から義務に・美容室倒産は2年連続で過去最多・サロンのAI活用・韓国がKビューティ支援法ほか</h2>
+        <div class="period">2026年10月6日号 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-09-29.html">
+      <div class="info">
+        <h2>秋冬は「レイヤー×ボルドー」・PuigがISDINを完全子会社化・BEYOND BEAUTY TOKYO開催・サロンの生成AI活用ほか</h2>
+        <div class="period">2026年9月下旬（9/18〜9/29） ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-09-23.html">
+      <div class="info">
+        <h2>パート時給が1448円に急上昇・美容料金の値上げは物価に届かず・生成AI「SALOMATE」・技能五輪国際大会が上海で開幕ほか</h2>
+        <div class="period">2026年9月15日 〜 9月23日 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-09-19.html">
+      <div class="info">
+        <h2>理容・美容の活動指数が2か月連続100割れ・平均時給1,448円・ミルボン「PRETOWA」・髪の悩み最多は白髪ほか</h2>
+        <div class="period">2026年9月7日 〜 9月19日 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-09-15.html">
+      <div class="info">
+        <h2>理美容サロン市場2兆1030億円・美容業の倒産120件で過去20年最多・インボイス経過措置の縮小・サロンベスコス2026ほか</h2>
+        <div class="period">2026年9月15日更新 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-09-07.html">
+      <div class="info">
+        <h2>理美容サービス支出が前年比+3.9%・ハラスメント対策の義務化・夏のカラーは「血色感」・インスタ集客にネープケアほか</h2>
+        <div class="period">2026年9月1日 〜 9月7日 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-09-01.html">
+      <div class="info">
+        <h2>美容サロン市場は6%減の2兆5299億円へ・ネイル市場1455億円・美容室倒産235件・TikTok集客の予約獲得事例ほか</h2>
+        <div class="period">2026年8月〜9月最新トピック ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-09-01-updated.html">
+      <div class="info">
+        <h2>エステ・脱毛サロンの倒産が過去最多ペース・美容師の3年未満離職率42.5%・美容室の約4割が値上げ・香水体験「Last Note」ほか</h2>
+        <div class="period">2026年8月19日 〜 8月25日 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-08-28.html">
+      <div class="info">
+        <h2>最低賃金「1500円」時代へ・出張理美容の対象範囲が拡大・アイビューティー市場1179億円・美容室のサブスク導入ほか</h2>
+        <div class="period">2026年8月28日号 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-08-27.html">
+      <div class="info">
+        <h2>休眠美容師57%超・メンズネイル市場が3年で3倍・訪日客の50%超が日本の美容室を利用したい・美容所27万4070件ほか</h2>
+        <div class="period">2026年8月27日号 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-08-26.html">
+      <div class="info">
+        <h2>美容室倒産235件で過去最多・秋冬はショコラブラウン・Instagram集客は少数タグ＋位置情報・白髪染め市場6061億円ほか</h2>
+        <div class="period">2026年8月版 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="archive-card" href="reports/beauty-weekly-2026-08-25.html">
+      <div class="info">
+        <h2>美容室市場は上期1兆3063億円・船井総研「時流予測レポート2026」・春夏は「レイヤー×ピンク」・TikTokでヒットするサロン急拡大ほか</h2>
+        <div class="period">2026年8月18日 〜 8月25日 ｜ 全7件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
   </div>
-
-  <div class="footer-note">
-    毎週更新予定 ｜ 本サイトは公開情報をもとにした要約レポートです
-  </div>
-
+  <footer>Moulin-R</footer>
+</div>
 </body>
 </html>
