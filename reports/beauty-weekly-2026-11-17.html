@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>週次美容業界動向レポート ｜ 2026-11-17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose: #c98a9c;
+    --rose-deep: #a8617a;
+    --gold: #c9a86a;
+    --cream: #faf6f1;
+    --cream-deep: #f1e9e0;
+    --ink: #2e2622;
+    --ink-soft: #6b5d55;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    background: radial-gradient(circle at 20% 10%, #f7e9ec 0%, #f3ece3 45%, #ece2d6 100%);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 32px 16px 48px;
+  }
+
+  .back-btn{
+    align-self:flex-start;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-bottom: 22px;
+    padding: 9px 18px;
+    border-radius: 100px;
+    border: 1px solid rgba(169,97,122,0.35);
+    background: rgba(255,255,255,0.6);
+    color: var(--rose-deep);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration:none;
+    transition: all .25s ease;
+  }
+  .back-btn:hover,.back-btn:focus-visible{
+    background: var(--rose-deep);
+    color:#fff;
+    outline:none;
+  }
+
+  .header{
+    text-align:center;
+    max-width:720px;
+    margin-bottom: 28px;
+    opacity:0;
+    animation: fadeDown .8s ease forwards;
+  }
+  .header .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing: 0.35em;
+    font-size: 13px;
+    color: var(--rose-deep);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header h1{
+    font-family:'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: clamp(26px, 5vw, 40px);
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    line-height:1.4;
+  }
+  .header .sub{
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  /* ticker */
+  .ticker-wrap{
+    width:100%;
+    max-width: 880px;
+    height: 56px;
+    overflow:hidden;
+    border-top: 1px solid rgba(169,97,122,0.25);
+    border-bottom: 1px solid rgba(169,97,122,0.25);
+    margin-bottom: 30px;
+    background: #f7eef0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .ticker-track{
+    display:flex;
+    align-items:center;
+    height: 56px;
+    width: max-content;
+    white-space:nowrap;
+    animation: scrollTicker 50s linear infinite;
+    will-change: transform;
+  }
+  .ticker-track span{
+    flex: 0 0 auto;
+    display:block;
+    padding: 0 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--rose-deep);
+    white-space:nowrap;
+  }
+  @keyframes scrollTicker{
+    0%{ transform: translateX(0); }
+    100%{ transform: translateX(-50%); }
+  }
+
+  .slider-stage{
+    position:relative;
+    width:100%;
+    max-width: 620px;
+    perspective: 1400px;
+  }
+
+  .progress-track{
+    width:100%;
+    max-width: 620px;
+    height: 3px;
+    background: rgba(169,97,122,0.15);
+    border-radius: 4px;
+    margin-bottom: 22px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background: linear-gradient(90deg, var(--gold), var(--rose-deep));
+    width: 12.5%;
+    transition: width .45s cubic-bezier(.65,0,.35,1);
+  }
+
+  .cards{
+    position:relative;
+    width:100%;
+    height: 480px;
+  }
+
+  .card{
+    position:absolute;
+    inset:0;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 22px;
+    box-shadow: 0 20px 50px -18px rgba(120,70,90,0.35), inset 0 1px 0 rgba(255,255,255,0.7);
+    padding: 34px 32px 28px;
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    transform: translateX(40px) scale(.97);
+    pointer-events:none;
+    transition: opacity .5s cubic-bezier(.65,0,.35,1), transform .5s cubic-bezier(.65,0,.35,1);
+  }
+  .card.active{
+    opacity:1;
+    transform: translateX(0) scale(1);
+    pointer-events:auto;
+  }
+  .card.prev{
+    opacity:0;
+    transform: translateX(-40px) scale(.97);
+  }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom: 18px;
+  }
+  .tag{
+    display:inline-block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: linear-gradient(135deg, var(--rose-deep), var(--gold));
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+  .heat{
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .card h2{
+    font-family:'Noto Serif JP', serif;
+    font-size: clamp(19px, 3.4vw, 24px);
+    line-height:1.55;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .card p.summary{
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    flex-grow:1;
+  }
+  .card .meta{
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(169,97,122,0.3);
+    display:flex;
+    justify-content:space-between;
+    font-size: 11.5px;
+    color: var(--rose-deep);
+    letter-spacing: 0.03em;
+  }
+  .card .num{
+    position:absolute;
+    bottom: 18px;
+    right: 26px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 52px;
+    color: rgba(169,97,122,0.1);
+    font-weight:600;
+    pointer-events:none;
+  }
+
+  .controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 22px;
+    margin-top: 26px;
+  }
+  .nav-btn{
+    width: 46px;
+    height:46px;
+    border-radius:50%;
+    border: 1px solid rgba(169,97,122,0.35);
+    background: rgba(255,255,255,0.6);
+    color: var(--rose-deep);
+    font-size: 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition: all .25s ease;
+  }
+  .nav-btn:hover{
+    background: var(--rose-deep);
+    color: #fff;
+    transform: scale(1.06);
+  }
+
+  .dots{
+    display:flex;
+    gap: 9px;
+  }
+  .dot{
+    width: 8px;
+    height:8px;
+    border-radius:50%;
+    background: rgba(169,97,122,0.25);
+    cursor:pointer;
+    transition: all .3s ease;
+  }
+  .dot.active{
+    background: var(--rose-deep);
+    width: 22px;
+    border-radius: 5px;
+  }
+
+  .counter{
+    margin-top: 14px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+  }
+
+  .footer-note{
+    margin-top: 34px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align:center;
+    max-width: 560px;
+    line-height: 1.8;
+    opacity: .75;
+  }
+
+  @keyframes fadeDown{
+    from{ opacity:0; transform: translateY(-14px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px){
+    .cards{ height: 560px; }
+    .card{ padding: 26px 22px 22px; }
+    .ticker-wrap{ height: 50px; }
+    .ticker-track{ height: 50px; }
+    .ticker-track span{ padding: 0 20px; font-size: 13px; }
+  }
+  @media (max-width: 360px){
+    .cards{ height: 660px; }
+  }
+</style>
+</head>
+<body>
+
+  <a class="back-btn" href="../index.html" aria-label="アーカイブ一覧へ戻る">← 一覧へ戻る</a>
+
+  <div class="header">
+    <div class="eyebrow">Weekly Beauty Industry Report</div>
+    <h1>週次美容業界動向レポート</h1>
+    <div class="sub">2026年11月10日 〜 11月17日 ｜ 全8件</div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>01｜求職者へのセクハラ対策が10月から義務に　SNS求人は連絡ルールの明確化を ｜</span>
+      <span>02｜AIが美容室探しで頼るのは予約サイト　ホットペッパービューティーが100回答中91 ｜</span>
+      <span>03｜美容学生1200人が登録　CAPが新卒採用支援「BEAUTY INSIGHT」を刷新 ｜</span>
+      <span>04｜確定申告からテレビCMまで　展示会に見るサロンのAI活用最前線 ｜</span>
+      <span>05｜タカラベルモント、縮毛矯正でギネス世界記録　全国9会場で115人を施術 ｜</span>
+      <span>06｜ナンバースリー「HUE mirai GLOSS」全12色を11月24日発売　透明感とツヤを訴求 ｜</span>
+      <span>07｜第18回「理美容甲子園」岡山で開催　約210校・約2,000人が技術を競う ｜</span>
+      <span>08｜電気刺激の櫛型装置「Detangle」　マウス実験で毛の再生を確認 ｜</span>
+      <span>01｜求職者へのセクハラ対策が10月から義務に　SNS求人は連絡ルールの明確化を ｜</span>
+      <span>02｜AIが美容室探しで頼るのは予約サイト　ホットペッパービューティーが100回答中91 ｜</span>
+      <span>03｜美容学生1200人が登録　CAPが新卒採用支援「BEAUTY INSIGHT」を刷新 ｜</span>
+      <span>04｜確定申告からテレビCMまで　展示会に見るサロンのAI活用最前線 ｜</span>
+      <span>05｜タカラベルモント、縮毛矯正でギネス世界記録　全国9会場で115人を施術 ｜</span>
+      <span>06｜ナンバースリー「HUE mirai GLOSS」全12色を11月24日発売　透明感とツヤを訴求 ｜</span>
+      <span>07｜第18回「理美容甲子園」岡山で開催　約210校・約2,000人が技術を競う ｜</span>
+      <span>08｜電気刺激の櫛型装置「Detangle」　マウス実験で毛の再生を確認 ｜</span>
+    </div>
+  </div>
+
+  <div class="slider-stage">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="cards" id="cards">
+
+      <div class="card active" data-index="0">
+        <div class="card-top">
+          <span class="tag">法改正</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>求職者へのセクハラ対策が10月から義務に　SNS求人は連絡ルールの明確化を</h2>
+        <p class="summary">求職者やインターン生に対するセクハラの防止措置が、2026年10月から事業主の義務になったとビュートピアが解説した。対象は面接の場だけでなく、SNSやオンラインでのやり取りにも及ぶ。事業主には、禁止方針と厳正対処の周知、相談体制の整備、求職活動のルールの明確化が求められる。SNSで求人する美容室は、連絡に使うアカウントをあらかじめ決めて伝え、採用担当者が個人的なやり取りをしない仕組みを整えておきたい。</p>
+        <div class="meta"><span>出典：ビュートピア</span><span>2026.11.13</span></div>
+        <div class="num">01</div>
+      </div>
+
+      <div class="card" data-index="1">
+        <div class="card-top">
+          <span class="tag">集客</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>AIが美容室探しで頼るのは予約サイト　ホットペッパービューティーが100回答中91</h2>
+        <p class="summary">Synapse Arrowsが11月11日に公表した調査によると、札幌市内の美容室探しに関する25問をChatGPT・Claude・Gemini・Perplexityに尋ねた計100回答のうち、ホットペッパービューティーは91回答、楽天ビューティは79回答で出典に使われた。Googleマップは0、Instagramは1回答のみ。予約サイトの料金やメニュー、営業時間を最新に保ち、得意な施術を具体的に書くことがAI経由の集客対策になるという。調査対象は札幌に限られる。</p>
+        <div class="meta"><span>出典：理美容ニュース</span><span>2026.11.11</span></div>
+        <div class="num">02</div>
+      </div>
+
+      <div class="card" data-index="2">
+        <div class="card-top">
+          <span class="tag">採用</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>美容学生1200人が登録　CAPが新卒採用支援「BEAUTY INSIGHT」を刷新</h2>
+        <p class="summary">CAPは11月12日、美容学生の就職活動と美容室の新卒採用をつなぐ「BEAUTY INSIGHT」を刷新した。美容室は求人とサロン情報を無料で載せられ、有料プラン（月額1万3800円・税別から）では学生へのスカウトやタイムラインでの発信、サロン体験の案内ができる。6月に始まった取り組みで、11月時点の学生登録は1200人。応募前のサロン体験を軸に据え、入社後のミスマッチを減らす狙いだ。</p>
+        <div class="meta"><span>出典：理美容ニュース</span><span>2026.11.13</span></div>
+        <div class="num">03</div>
+      </div>
+
+      <div class="card" data-index="3">
+        <div class="card-top">
+          <span class="tag">DX</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>確定申告からテレビCMまで　展示会に見るサロンのAI活用最前線</h2>
+        <p class="summary">ビュートピアが、9月30日〜10月2日に東京ビッグサイトで開かれたBEYOND BEAUTY TOKYO 2026と、初開催のヘルス＆ビューティDXトーキョーの出展企業を紹介した。スマホ1台で確定申告ができる個人事業主向けアプリ「タックスナップ」、インフルエンサー施策を支援する「Cast Me！」、生成AIでテレビCMを制作するサービスなどが並んだ。サロンのAI活用は、業務の効率化から販促や広告制作へと広がりつつある。</p>
+        <div class="meta"><span>出典：ビュートピア</span><span>2026.11.12</span></div>
+        <div class="num">04</div>
+      </div>
+
+      <div class="card" data-index="4">
+        <div class="card-top">
+          <span class="tag">技術</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>タカラベルモント、縮毛矯正でギネス世界記録　全国9会場で115人を施術</h2>
+        <p class="summary">タカラベルモントは11月10日、「8時間にチームで行った縮毛矯正の最多人数（複数会場）」でギネス世界記録に認定された。札幌から福岡まで全国9会場を中継で結び、理容師・美容師が3クールに分けて115人のクセ毛モデルを施術した。使ったのはルベルのクセ毛対策シリーズ「HITA」。日本の理美容師の技術を世界へ発信し、業界を元気づけたいという思いを込めた挑戦だという。</p>
+        <div class="meta"><span>出典：理美容ニュース</span><span>2026.11.12</span></div>
+        <div class="num">05</div>
+      </div>
+
+      <div class="card" data-index="5">
+        <div class="card-top">
+          <span class="tag">トレンド</span>
+          <span class="heat">🔥🔥</span>
+        </div>
+        <h2>ナンバースリー「HUE mirai GLOSS」全12色を11月24日発売　透明感とツヤを訴求</h2>
+        <p class="summary">ナンバースリーは11月24日、プロ向けヘアカラー「HUE mirai」の新商品「HUE mirai GLOSS」全12色を発売する。すでに染めた部分の色味を整え、透明感とツヤのある仕上がりをめざすカラー剤で、既存シリーズにも新色が加わる。ブランドはブラウン、インテンシブ、グロス、ケアの4本柱になる。透明感やツヤを求めるお客様に向けた、冬のカラーメニューづくりの選択肢になりそうだ。</p>
+        <div class="meta"><span>出典：理美容ニュース</span><span>2026.11.16</span></div>
+        <div class="num">06</div>
+      </div>
+
+      <div class="card" data-index="6">
+        <div class="card-top">
+          <span class="tag">業界イベント</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>第18回「理美容甲子園」岡山で開催　約210校・約2,000人が技術を競う</h2>
+        <p class="summary">日本理容美容教育センターが主催する第18回全国理容美容学生技術大会（理美容甲子園）が11月11日、岡山市のシゲトーアリーナ岡山で開かれた。全国11地区の予選を勝ち抜いた約210校・約2,000人が出場し、ワインディング、カット、アップスタイル、まつ毛エクステンション、ネイルアートなどで腕を競った。美容部門ではグラムール美容専門学校の学生がカットとアップスタイルの金賞を獲得している。</p>
+        <div class="meta"><span>出典：理美容ニュース</span><span>2026.11.16</span></div>
+        <div class="num">07</div>
+      </div>
+
+      <div class="card" data-index="7">
+        <div class="card-top">
+          <span class="tag">海外・新技術</span>
+          <span class="heat">🔥🔥</span>
+        </div>
+        <h2>電気刺激の櫛型装置「Detangle」　マウス実験で毛の再生を確認</h2>
+        <p class="summary">北京航空航天大学などの研究チームが、髪に通すと微弱な電気パルスが生じ、同時に治療用の分子を皮膚へ届ける櫛型装置「Detangle」を開発したと報じられている。成果は11月3日付でNature Communicationsに掲載された。脱毛を誘導したマウスでは処置部位の毛がほぼ100％回復し、外用ミノキシジルの約70％を上回ったという。ただし動物実験の段階で、人での効果や安全性は確かめられていない。</p>
+        <div class="meta"><span>出典：理美容ニュース</span><span>2026.11.12</span></div>
+        <div class="num">08</div>
+      </div>
+
+    </div>
+
+    <div class="controls">
+      <div class="nav-btn" id="prevBtn">←</div>
+      <div class="dots" id="dots"></div>
+      <div class="nav-btn" id="nextBtn">→</div>
+    </div>
+    <div class="counter" id="counter">01 / 08</div>
+  </div>
+
+  <div class="footer-note">
+    ※本レポートは公開情報をもとにした要約です。詳細は各出典元をご確認ください。<br>
+    次回は来週更新予定です。
+  </div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const dotsWrap = document.getElementById('dots');
+  const total = cards.length;
+  let current = 0;
+
+  for(let i=0;i<total;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=> goTo(i));
+    dotsWrap.appendChild(d);
+  }
+  const dots = document.querySelectorAll('.dot');
+  const progressFill = document.getElementById('progressFill');
+  const counter = document.getElementById('counter');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function render(){
+    cards.forEach((c, i)=>{
+      c.classList.remove('active','prev');
+      if(i === current) c.classList.add('active');
+      else if(i < current) c.classList.add('prev');
+    });
+    dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    progressFill.style.width = ((current+1)/total*100) + '%';
+    counter.textContent = pad(current+1) + ' / ' + pad(total);
+  }
+
+  function goTo(i){
+    current = (i+total) % total;
+    render();
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=> goTo(current+1));
+  document.getElementById('prevBtn').addEventListener('click', ()=> goTo(current-1));
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight') goTo(current+1);
+    if(e.key === 'ArrowLeft') goTo(current-1);
+  });
+
+  // touch swipe
+  let touchStartX = 0;
+  const stage = document.querySelector('.slider-stage');
+  stage.addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  stage.addEventListener('touchend', (e)=>{
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if(dx > 50) goTo(current-1);
+    if(dx < -50) goTo(current+1);
+  }, {passive:true});
+
+  render();
+</script>
+
+</body>
+</html>
